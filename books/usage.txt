@@ -1,0 +1,74 @@
+Authors: Anders Shenholm, Simon Hempel-Costello
+
+Usage: python3 books.py <COMMAND>
+
+
+The different options for commands are as follows
+
+
+Name
+	authorsearch  -- list authors whose name contains a certain character or character string
+ 
+Synopsis
+
+	python3 books.py authorsearch [TARGET STRING]
+
+Description
+	
+	Given a search string S, print a list of authors whose names contain S (case-insensitive). For each such author, print a list of the author's books. Authors should be printed in alphabetical order by surname, breaking ties by using given name (e.g. Ann Brontë comes before Charlotte Brontë).
+
+
+
+Name 
+
+	titlesearch or - search for titles containing a given string
+Synopsis
+	
+	python3 books.py titlesearch [TARGET WORD] [OPTION]
+
+Description
+
+	Given a search string S, print a list of books whose titles contain S (case-insensitive). 
+	Books may be sorted by title (by default) or by publication year.
+ 
+	The following options are available
+
+
+	-y
+		sort entries in increasing order of publication year
+
+
+
+Name 
+	--help, -h - display the basic description of commands and common use cases
+
+Synopsis
+
+	python3 books.py [FUNCTION] --help 
+
+Description 
+
+	help prints a description of the specified command with usage information.
+
+
+
+Name
+
+	datesearch or - search for titles between two given dates, books are output in increasing order of date. 
+
+Synopsis
+
+	python3 books.py datesearch -s [START DATE]  -e [END DATE] 
+ 
+Description
+
+	Given a range of years A to B, print a list of books published between years A and B. If a start date is not given, 
+	it searches for books that are before the end date, and if an end date is not given, then it searches for books after the start date.
+	If neither are given, all books will be published in increasing order of date
+
+	The following options are available
+
+	-s, --startdate Specify the start date, unless this is specified it will be 0
+	-e, --enddate
+
+
