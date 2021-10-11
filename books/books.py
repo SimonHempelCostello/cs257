@@ -3,7 +3,7 @@
     10/2/2021
 
     Simon Hempel-Costello, Anders Shenholm
-    Revised by Simon Hempel-Costello
+    Revised by Simon Hempel-Costello, Anders Shenholm
 '''
 import booksdatasource
 import sys
@@ -41,7 +41,7 @@ class BooksSearch:
             output_string += (str(pre_text) + str(a) + str(post_text))
         return output_string
 
-class BooksInterface():
+class BooksCommandLineInterface():
     
     def __init__(self) -> None:
         self.titlesearch_help = 'Given a search string S, print a list of books whose titles contain S (case-insensitive). Books may be sorted by title (by default) or by publication year.'
@@ -103,7 +103,7 @@ class BooksInterface():
         return args
 
 if __name__ == '__main__':
-    book_interface = BooksInterface()
+    book_interface = BooksCommandLineInterface()
     arguments = book_interface.get_arguements()
     book_search = BooksSearch('books1.csv')
     output = ''
