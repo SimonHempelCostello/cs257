@@ -27,6 +27,7 @@ class BooksSearch:
         #Print out the authors and the books they wrote
         author_list = self.data_source.authors(arguments.authorsearch)
         output_string = ''
+        # I cant use the return list method here because of the need to access the search books by author method
         for a in author_list:
             output_string+= str(a) + ', Books Written:' + str(self.data_source.search_books_by_author(a)) + '\n'
         return output_string
