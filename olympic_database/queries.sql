@@ -1,4 +1,4 @@
-SELECT * FROM NOC ORDER BY acronym;
+SELECT * FROM noc_regions ORDER BY acronym;
 
 SELECT olympians.surname, olympians.firstname, olympians_events.NOC_id, olympians.athlete_id
 FROM olympians, olympians_events, events

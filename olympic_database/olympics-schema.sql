@@ -23,7 +23,7 @@ CREATE TABLE olympians_events(
     NOC_id text
 
 );
-CREATE TABLE NOC(
+CREATE TABLE noc_regions(
     acronym text,
     region text,
     notes text
