@@ -1,3 +1,7 @@
+'''
+October 13th 2021
+Simon Hempel-Costello
+'''
 import csv
 class Converter:
     def __init__(self) -> None:
@@ -20,8 +24,6 @@ class Converter:
     def write_olympians(self):
         with open('olympians.csv', 'w', encoding = 'UTF8') as file:
             writer = csv.writer(file)
-            output_row = ["id", "first name", "surname"]
-            writer.writerow(output_row)
             last_id = ""
             for a in self.athlete_event_list:
                 id = a[0]
@@ -39,7 +41,7 @@ class Converter:
         with open('events.csv', 'w', encoding = 'UTF8') as file:
             writer = csv.writer(file)
             eventID = 0
-            for a in self.athlete_event_list:
+            for a in self.athlete_event_list[1:]:
                 id = str(a[0])
                 games = a[8]
                 year = a[9]
@@ -54,14 +56,14 @@ class Converter:
                 mass = a[5]
                 NOC = a[7]
                 output_row = [eventID , games,year, season, city, sport, event, medal, sex, age, height, mass]
-                for entry in output_row:
-                    if entry == 'NA':
-                        print("hi")
-                        entry = 'Null'
-                eventID+=1
+                for i in range(len(output_row)):
+                    if output_row[i] == 'NA':
+                        output_row[i] = 'NULL'
                 writer.writerow(output_row)
                 self.olympian_event_dictionary[eventID] = id
                 self.event_NOC_dictionary[eventID] = NOC
+                eventID+=1
+
     def write_olympian_events(self):
         with open('olympians_events.csv', 'w', encoding = 'UTF8') as file:
             writer = csv.writer(file)
