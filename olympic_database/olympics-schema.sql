@@ -10,12 +10,17 @@ CREATE TABLE events(
     season text,
     city text,
     sport text,
-    olympic_event text,
-    medal text,
+    olympic_event text
+);
+CREATE TABLE competitor_instance(
+    event_id integer, 
+    olympian_id integer, 
     sex text,
     age integer,
     height integer,
-    mass decimal
+    mass decimal, 
+    NOC_id text, 
+    medal text
 );
 CREATE TABLE olympians_events(
     event_id integer, 
