@@ -111,6 +111,20 @@ class Competitor:
         return self.NOC
     def medal(self):
         return self.medal
+class Game():
+    def __init__(self, year, season, city, title):
+        self.year = year
+        self.season = season
+        self.city = city
+        self.title = title
+    def year(self):
+        return self.year
+    def season(self):
+        return self.season
+    def city(self):
+        return self.city
+    def title(self):
+        return self.title
 
 if __name__ == "__main__":             
     c = Converter()

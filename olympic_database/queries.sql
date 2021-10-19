@@ -1,4 +1,4 @@
-SELECT * FROM noc_regions ORDER BY acronym;
+SELECT * FROM noc_regions ORDER BY NOC_id;
 
 SELECT olympians.surname, olympians.firstname, competitor_instance.event_id, olympians.athlete_id
 FROM olympians, competitor_instance
@@ -13,6 +13,7 @@ AND competitor_instance.olympian_id = olympians.athlete_id
 AND events.id = competitor_instance.event_id
 AND competitor_instance.medal != '';
 
+-- This will only present those countries which have at least one medal
 SELECT competitor_instance.NOC_ID, COUNT(*) as "Number of Golds"
 FROM competitor_instance
 WHERE competitor_instance.medal = 'Gold'

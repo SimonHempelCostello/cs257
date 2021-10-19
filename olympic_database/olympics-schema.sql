@@ -3,15 +3,23 @@ CREATE TABLE olympians(
     firstname text,
     surname text
 );
-CREATE TABLE events(
-    id SERIAL,
-    title text,
+CREATE TABLE games(
+    id Serial
     year integer,
     season text,
     city text,
+    title text
+);
+CREATE TABLE events(
+    id SERIAL,
     sport text,
     olympic_event text
 );
+CREATE TABLE games_events(
+    game_id integer,
+    event_id integer
+);
+
 CREATE TABLE competitor_instance(
     event_id integer, 
     olympian_id integer, 
@@ -22,14 +30,8 @@ CREATE TABLE competitor_instance(
     NOC_id text, 
     medal text
 );
-CREATE TABLE olympians_events(
-    event_id integer, 
-    olympian_id integer,
-    NOC_id text
-
-);
 CREATE TABLE noc_regions(
-    acronym text,
+    NOC_id text,
     region text,
     notes text
 );
