@@ -4,7 +4,7 @@ CREATE TABLE olympians(
     surname text
 );
 CREATE TABLE games(
-    id Serial
+    id Integer,
     year integer,
     season text,
     city text,
@@ -12,14 +12,10 @@ CREATE TABLE games(
 );
 CREATE TABLE events(
     id SERIAL,
+    game_id Integer,
     sport text,
     olympic_event text
 );
-CREATE TABLE games_events(
-    game_id integer,
-    event_id integer
-);
-
 CREATE TABLE competitor_instance(
     event_id integer, 
     olympian_id integer, 

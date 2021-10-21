@@ -9,6 +9,8 @@ class Converter:
         self.olympian_event_dictionary = {}
         self.event_NOC_dictionary = {}
         self.competitor_event_dictionary = {}
+        self.games_list =[]
+        self.event_list = []
         pass
 
     def read_in(self, athlete_event_file_name, NOC_file_name):
@@ -45,6 +47,7 @@ class Converter:
         with open('events.csv', 'w', encoding = 'UTF8') as file:
             writer = csv.writer(file)
             eventID = 0
+            gameID = 0
             for a in self.athlete_event_list[1:]:
                 for i in range(len(a)):
                     if a[i] == 'NA':
@@ -62,12 +65,16 @@ class Converter:
                 height = a[4]
                 mass = a[5]
                 NOC = a[7]
-                output_row = [eventID , games,year, season, city, sport, event]
-                writer.writerow(output_row)
+                competitor = Competitor(age, sex, mass, height, NOC, medal)
+                game = Game(year, season, city, games)
                 self.olympian_event_dictionary[eventID] = id
                 self.event_NOC_dictionary[eventID] = NOC
-                competitor = Competitor(age, sex, mass, height, NOC, medal)
                 self.competitor_event_dictionary[eventID] = competitor
+                if(game not in self.games_list):
+                    self.games_list.append(game)
+                output_row = [eventID,self.games_list.index(game),sport, event]
+                writer.writerow(output_row)
+
                 eventID+=1
 
     def write_olympian_events(self):
@@ -88,7 +95,23 @@ class Converter:
                 athlete_id = self.olympian_event_dictionary[key]
                 eventID = key
                 competitor = self.competitor_event_dictionary[key]
-                output = [eventID, athlete_id, competitor.sex, competitor.age, competitor.height, competitor.mass, competitor.NOC, competitor.medal]
+                sex = competitor.sex
+                age = competitor.age
+                height = competitor.height
+                mass = competitor.mass
+                NOC = competitor.NOC
+                medal = competitor.medal
+                output = [eventID, athlete_id, sex, age, height, mass, NOC, medal]
+                writer.writerow(output)
+    def write_games(self):
+        with open('games.csv', 'w', encoding = 'UTF8') as file:
+            writer = csv.writer(file)
+            for game in self.games_list:
+                year = game.year
+                season = game.season
+                city = game.city
+                title = game.title
+                output = [self.games_list.index(game),year, season, city, title]
                 writer.writerow(output)
 class Competitor:
     def __init__(self, age, sex, mass, height, NOC, medal) -> None:
@@ -125,6 +148,12 @@ class Game():
         return self.city
     def title(self):
         return self.title
+    def __str__(self):
+        return self.title
+    def __repr__(self):
+        return self.title
+    def __eq__(self, other):
+        return (self.title == other.title and self.city == other.city)
 
 if __name__ == "__main__":             
     c = Converter()
@@ -133,5 +162,6 @@ if __name__ == "__main__":
     c.write_events()
     c.write_olympian_events()
     c.write_competitor_instance()
+    c.write_games()
 
 
