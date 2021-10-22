@@ -9,7 +9,7 @@ import argparse
 class Olympics_User_Interface():
     
     def __init__(self) -> None:
-        self.namesearch_help = 'Given a NOC search string, show the names of athletes who have represented that NOC ordered by their last name'
+        self.nocsearch_help = 'Given a NOC search string, show the names of athletes who have represented that NOC ordered by their last name'
         self.medallist_help = 'Lists all NOCs in order of the gold medals they have won, in decreasing order of gold medals'
         self.agesearch_help = '''Given a youngest age, oldest age, or both, will search for olympians within the given ages inclusive. 
         If a youngest age only is given, all athletes older than that will be presented, vice versa for oldest.'''
@@ -18,11 +18,11 @@ class Olympics_User_Interface():
     def get_arguements(self):
         parser = argparse.ArgumentParser('Allows for searches to be made around a database of olympic athletes')
         subparsers = parser.add_subparsers(description = 'commands')
-        NOC_name_parser = subparsers.add_parser('namesearch',help = self.namesearch_help)
+        NOC_name_parser = subparsers.add_parser('nocsearch',help = self.nocsearch_help)
         #parsing for NOC search
         NOC_name_parser.add_argument(
-            'namesearch',
-            help = self.namesearch_help,
+            'nocsearch',
+            help = self.nocsearch_help,
             default  = '',
             nargs='?',
         )
@@ -74,9 +74,9 @@ class Olympics_SQL_Interface():
             exit()
         self.cursor = self.connection.cursor()
 
-    def namesearch_sql(self, input):
+    def nocsearch_sql(self, input):
         #Searches for distinct olympians where there NOC ID matches the input one
-        search_string = input.namesearch
+        search_string = input.nocsearch
         query = '''SELECT DISTINCT olympians.firstname, olympians.surname, olympians.athlete_id
                     FROM olympians, competitor_instance
                     WHERE olympians.athlete_id = competitor_instance.olympian_id
@@ -122,6 +122,7 @@ class Olympics_SQL_Interface():
                 FROM olympians, competitor_instance
                 WHERE olympians.athlete_id = competitor_instance.olympian_id
                 AND competitor_instance.age BETWEEN %(start_age)s AND %(end_age)s
+                ORDER BY olympians.surname
                 '''
         #Dictionary for the possible variables in the query
         try:
@@ -138,8 +139,8 @@ if __name__ == '__main__':
     arguments = user_interface.get_arguements()
     sql_interface = Olympics_SQL_Interface()
     sql_interface.establish_connection()
-    if('namesearch' in arguments):
-        sql_interface.namesearch_sql(arguments)
+    if('nocsearch' in arguments):
+        sql_interface.nocsearch_sql(arguments)
     elif('medallist' in arguments):
         sql_interface.medallist_sql()
     elif('agesearch' in arguments):
