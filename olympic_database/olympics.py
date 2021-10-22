@@ -145,9 +145,7 @@ class Olympics_SQL_Interface():
         return cursor
     def agesearch_printout(self, input):
         cursor = self.agesearch_sql(input)
-        start_age = input.startage
-        end_age = input.endage
-        print('=====Athletes between '+ start_age + " and " + end_age + '=====')
+
         for row in cursor:
 
             print(row[0] + row[1])
