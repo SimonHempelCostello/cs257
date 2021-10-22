@@ -5,9 +5,8 @@
     Simon Hempel-Costello
 '''
 import argparse
-#Simply controls the user interfacing with the sql data
 class Olympics_User_Interface():
-    
+    '''Simply controls the user interfacing with the sql data''' 
     def __init__(self) -> None:
         self.nocsearch_help = 'Given a NOC search string, show the names of athletes who have represented that NOC ordered by their last name'
         self.medallist_help = 'Lists all NOCs in order of the gold medals they have won, in decreasing order of gold medals'
@@ -19,14 +18,14 @@ class Olympics_User_Interface():
         parser = argparse.ArgumentParser('Allows for searches to be made around a database of olympic athletes')
         subparsers = parser.add_subparsers(description = 'commands')
         NOC_name_parser = subparsers.add_parser('nocsearch',help = self.nocsearch_help)
-        #parsing for NOC search
+        '''parsing for NOC search'''
         NOC_name_parser.add_argument(
             'nocsearch',
             help = self.nocsearch_help,
             default  = '',
             nargs='?',
         )
-        #parsing for medal list
+        '''parsing for medal list'''
         medal_parser = subparsers.add_parser('medallist',help =self.medallist_help)
         medal_parser.add_argument(
             'medallist',
@@ -34,7 +33,7 @@ class Olympics_User_Interface():
             default  = '',
             action='store_true'
         )
-        #parsing for agesearch search
+        '''parsing for agesearch search'''
         age_search = subparsers.add_parser('agesearch',help = self.agesearch_help)
         age_search.add_argument(
             'agesearch',
@@ -42,14 +41,14 @@ class Olympics_User_Interface():
             default  = '',
             nargs='?',
         )
-        #start age parsing
+        '''start age parsing'''
         age_search.add_argument(
             '--startage','-s',
             help = self.startage_help,
             default = None, 
 
         )
-        #end age parsing
+        '''end age parsing'''
         age_search.add_argument(
             '--endage','-e',
             help = self.endage_help,
@@ -61,8 +60,8 @@ import psycopg2
 from config import password
 from config import database
 from config import user
-#Allows for the queries to be made and prints out the results
 class Olympics_SQL_Interface():
+    '''Allows for the queries to be made and prints out the results'''
     def __init__(self):
         pass
     def establish_connection(self):
