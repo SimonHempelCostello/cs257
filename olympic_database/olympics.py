@@ -66,72 +66,92 @@ class Olympics_SQL_Interface():
     def __init__(self):
         pass
     def establish_connection(self):
-        # Connect to the database
+        ''' Connect to the database'''
         try:
             self.connection = psycopg2.connect(database=database, user=user, password=password)
         except Exception as e:
             print(e)
             exit()
-        self.cursor = self.connection.cursor()
 
     def nocsearch_sql(self, input):
-        #Searches for distinct olympians where there NOC ID matches the input one
-        search_string = input.nocsearch
+        '''Searches for distinct olympians where there NOC ID matches the input one'''
+        cursor = self.connection.cursor()
+        search_string = input.nocsearch.upper()
         query = '''SELECT DISTINCT olympians.firstname, olympians.surname, olympians.athlete_id
                     FROM olympians, competitor_instance
                     WHERE olympians.athlete_id = competitor_instance.olympian_id
                     AND competitor_instance.NOC_id =  %s
                     ORDER BY olympians.surname'''
         try:
-            self.cursor.execute(query, (search_string,))
+            cursor.execute(query, (search_string,))
         except Exception as e:
             print(e)
             exit()
-        #ensures that an actual NOC was input
-        if(self.cursor.rowcount ==0):
+        '''ensures that an actual NOC was input'''
+        if(cursor.rowcount ==0):
             raise ValueError("please input a valid NOC acronym")
-        print('=====Athletes From '+ search_string + '=====')
-        for row in self.cursor:
+        return cursor
+
+    def noc_printout(self, input):
+        cursor = self.nocsearch_sql(input)
+        search_string = input.nocsearch
+
+        print('=====Athletes From National Olympic Committee '+ search_string + '=====')
+        for row in cursor:
             print(row[0] + row[1])
 
     def medallist_sql(self):
-        #sql query for medal list
+        '''sql query for medal list'''
+        cursor = self.connection.cursor()
         query = '''SELECT competitor_instance.NOC_ID, COUNT(*) as "Number of Golds"
                 FROM competitor_instance
                 WHERE competitor_instance.medal = 'Gold'
                 GROUP BY competitor_instance.NOC_id
                 ORDER BY COUNT(*) DESC '''
         try:
-            self.cursor.execute(query)
+            cursor.execute(query)
         except Exception as e:
             print(e)
             exit()
+        return cursor
+    def medallist_printout(self):
+        cursor = self.medallist_sql()
         print('====Nations By Gold Medal====')
-        for row in self.cursor:
+        for row in cursor:
             print('Nation:'+row[0] +' Medals:' + str(row[1]))
 
     def agesearch_sql(self, input):
+        '''sql for age search'''
+        cursor = self.connection.cursor()
         start_age = 0
         end_age = 140
         if(input.startage != None):
             start_age = int(input.startage)
         if(input.endage != None):
             end_age = int(input.endage)
-        #query for age search
+        '''query for age search'''
         query = '''SELECT DISTINCT olympians.firstname, olympians.surname
                 FROM olympians, competitor_instance
                 WHERE olympians.athlete_id = competitor_instance.olympian_id
                 AND competitor_instance.age BETWEEN %(start_age)s AND %(end_age)s
                 ORDER BY olympians.surname
                 '''
-        #Dictionary for the possible variables in the query
+        '''Dictionary for the possible variables in the query'''
         try:
-            self.cursor.execute(query, ({'start_age':start_age, 'end_age':end_age}))
+            cursor.execute(query, ({'start_age':start_age, 'end_age':end_age}))
         except Exception as e:
             print(e)
             exit()
-        for row in self.cursor:
+        return cursor
+    def agesearch_printout(self, input):
+        cursor = self.agesearch_sql(input)
+        start_age = input.startage
+        end_age = input.endage
+        print('=====Athletes between '+ start_age + " and " + end_age + '=====')
+        for row in cursor:
+
             print(row[0] + row[1])
+
     def close_connection(self):
         self.connection.close()
 if __name__ == '__main__':
@@ -140,9 +160,9 @@ if __name__ == '__main__':
     sql_interface = Olympics_SQL_Interface()
     sql_interface.establish_connection()
     if('nocsearch' in arguments):
-        sql_interface.nocsearch_sql(arguments)
+        sql_interface.noc_printout(arguments)
     elif('medallist' in arguments):
-        sql_interface.medallist_sql()
+        sql_interface.medallist_printout()
     elif('agesearch' in arguments):
-        sql_interface.agesearch_sql(arguments)
+        sql_interface.agesearch_printout(arguments)
     sql_interface.close_connection()
