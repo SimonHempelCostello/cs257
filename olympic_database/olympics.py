@@ -5,6 +5,7 @@
     Simon Hempel-Costello
 '''
 import argparse
+import json
 class Olympics_User_Interface():
     '''Simply controls the user interfacing with the sql data''' 
     def __init__(self) -> None:
@@ -142,6 +143,99 @@ class Olympics_SQL_Interface():
             print(e)
             exit()
         return cursor
+    def noc_list(self):
+        '''sql query for noc list'''
+        cursor = self.connection.cursor()
+        query = '''SELECT  noc_regions.NOC_id, noc_regions.region
+                FROM noc_regions
+                ORDER BY noc_regions.NOC_id'''
+        try:
+            cursor.execute(query)
+        except Exception as e:
+            print(e)
+            exit()
+        return cursor
+    def json_output_noc_list(self):
+        cursor = self.noc_list()
+        output_list = []
+        for row in cursor:
+            row_dictionary = {}
+            row_dictionary["noc_id"] = row[0]
+            row_dictionary["region"] = row[1]
+            output_list.append(row_dictionary)
+        return json.dumps(output_list)
+
+
+    def games_list(self):
+        '''sql query for games list'''
+        cursor = self.connection.cursor()
+        query = '''SELECT  games.id, games.year, games.season, games.city
+                FROM games'''
+        try:
+            cursor.execute(query)
+        except Exception as e:
+            print(e)
+            exit()
+        return cursor
+    def json_output_games_list(self):
+        cursor = self.games_list()
+        output_list = []
+        for row in cursor:
+            row_dictionary = {}
+            row_dictionary["id"] = row[0]
+            row_dictionary["year"] = row[1]
+            row_dictionary["season"] = row[2]
+            row_dictionary["city"] = row[3]
+
+
+            output_list.append(row_dictionary)
+        return json.dumps(output_list)
+    def games_medal_list(self,games_input, NOC_input = None):
+
+        '''sql for getting the list of medals at a specified games from a certain dictionary'''
+        cursor = self.connection.cursor()
+
+        if(NOC_input == None):
+            query = '''SELECT DISTINCT olympians.athlete_id, olympians.firstname, olympians.surname, competitor_instance.sex, competitor_instance.medal, events.sport, events.olympic_event
+                    FROM games, olympians, competitor_instance, events
+                    WHERE events.game_id = %(games_id)s
+                    AND competitor_instance.event_id = events.id
+                    AND olympians.athlete_id = competitor_instance.olympian_id
+                    AND competitor_instance.medal != 'NULL' '''
+            try:
+                cursor.execute(query, ({'games_id':games_input}))
+            except Exception as e:
+                print(e)
+                exit()
+        else:
+            query = '''SELECT DISTINCT olympians.athlete_id, olympians.firstname, olympians.surname, competitor_instance.sex, competitor_instance.medal, events.sport, events.olympic_event
+                    FROM games, olympians, competitor_instance, events
+                    WHERE events.game_id = %(games_id)s
+                    AND competitor_instance.event_id = events.id
+                    AND olympians.athlete_id = competitor_instance.olympian_id
+                    AND competitor_instance.medal != 'NULL'
+                    AND %(noc_id)s = competitor_instance.NOC_id'''
+            try:
+                cursor.execute(query, ({'games_id':games_input, 'noc_id':NOC_input}))
+            except Exception as e:
+                print(e)
+                exit()
+        return cursor
+    def json_output_games_medal_list(self, games_input, NOC_input = None):
+        cursor = self.games_medal_list(games_input,NOC_input)
+        output_list = []
+        for row in cursor:
+            row_dictionary = {}
+            row_dictionary["athlete_id"] = row[0]
+            row_dictionary["name"] = row[1] + " " + row[2]
+            row_dictionary["sex"] = row[3]
+            row_dictionary["medal"] = row[4]
+            row_dictionary["sport"] = row[5]
+            row_dictionary["event"] = row[6]
+
+
+            output_list.append(row_dictionary)
+        return json.dumps(output_list)
     def agesearch_printout(self, input):
         cursor = self.agesearch_sql(input)
 
@@ -152,10 +246,11 @@ class Olympics_SQL_Interface():
     def close_connection(self):
         self.connection.close()
 if __name__ == '__main__':
-    user_interface = Olympics_User_Interface()
-    arguments = user_interface.get_arguements()
+
     sql_interface = Olympics_SQL_Interface()
     sql_interface.establish_connection()
+    user_interface = Olympics_User_Interface()
+    arguments = user_interface.get_arguements()
     if('nocsearch' in arguments):
         sql_interface.noc_printout(arguments)
     elif('medallist' in arguments):
