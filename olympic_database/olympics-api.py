@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 '''
-    template_sample.py
-    Jeff Ondich
-    6 November 2020
+    olympics.py
+    10/25/2021
 
-    Using templates in Flask.
+    Simon Hempel-Costello
 '''
 import sys
 import argparse
