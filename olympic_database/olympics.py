@@ -8,6 +8,7 @@ import argparse
 import json
 class Olympics_User_Interface():
     '''Simply controls the user interfacing with the sql data''' 
+
     def __init__(self) -> None:
         self.nocsearch_help = 'Given a NOC search string, show the names of athletes who have represented that NOC ordered by their last name'
         self.medallist_help = 'Lists all NOCs in order of the gold medals they have won, in decreasing order of gold medals'
@@ -15,6 +16,7 @@ class Olympics_User_Interface():
         If a youngest age only is given, all athletes older than that will be presented, vice versa for oldest.'''
         self.startage_help = 'youngest age to be included in output'
         self.endage_help = 'oldest age to be included in output'
+
     def get_arguements(self):
         parser = argparse.ArgumentParser('Allows for searches to be made around a database of olympic athletes')
         subparsers = parser.add_subparsers(description = 'commands')
@@ -57,14 +59,18 @@ class Olympics_User_Interface():
         )
         args = parser.parse_args()
         return args
+
 import psycopg2
 from config import password
 from config import database
 from config import user
+
 class Olympics_SQL_Interface():
     '''Allows for the queries to be made and prints out the results'''
+
     def __init__(self):
         pass
+
     def establish_connection(self):
         ''' Connect to the database'''
         try:
@@ -95,7 +101,6 @@ class Olympics_SQL_Interface():
     def noc_printout(self, input):
         cursor = self.nocsearch_sql(input)
         search_string = input.nocsearch
-
         print('=====Athletes From National Olympic Committee '+ search_string + '=====')
         for row in cursor:
             print(row[0] + row[1])
@@ -114,6 +119,7 @@ class Olympics_SQL_Interface():
             print(e)
             exit()
         return cursor
+
     def medallist_printout(self):
         cursor = self.medallist_sql()
         print('====Nations By Gold Medal====')
@@ -143,6 +149,14 @@ class Olympics_SQL_Interface():
             print(e)
             exit()
         return cursor
+
+    def agesearch_printout(self, input):
+        cursor = self.agesearch_sql(input)
+
+        for row in cursor:
+
+            print(row[0] + row[1])
+
     def noc_list(self):
         '''sql query for noc list'''
         cursor = self.connection.cursor()
@@ -155,7 +169,9 @@ class Olympics_SQL_Interface():
             print(e)
             exit()
         return cursor
+
     def json_output_noc_list(self):
+        '''returns json output for the noc list sql call'''
         cursor = self.noc_list()
         output_list = []
         for row in cursor:
@@ -177,7 +193,9 @@ class Olympics_SQL_Interface():
             print(e)
             exit()
         return cursor
+
     def json_output_games_list(self):
+        '''returns the json output containing the data from the games list sql call'''
         cursor = self.games_list()
         output_list = []
         for row in cursor:
@@ -190,8 +208,8 @@ class Olympics_SQL_Interface():
 
             output_list.append(row_dictionary)
         return json.dumps(output_list)
-    def games_medal_list(self,games_input, NOC_input = None):
 
+    def games_medal_list(self,games_input, NOC_input = None):
         '''sql for getting the list of medals at a specified games from a certain dictionary'''
         cursor = self.connection.cursor()
 
@@ -221,7 +239,9 @@ class Olympics_SQL_Interface():
                 print(e)
                 exit()
         return cursor
+        
     def json_output_games_medal_list(self, games_input, NOC_input = None):
+        '''returns the JSON output contaning the data from the games medal list sql call'''
         cursor = self.games_medal_list(games_input,NOC_input)
         output_list = []
         for row in cursor:
@@ -236,17 +256,11 @@ class Olympics_SQL_Interface():
 
             output_list.append(row_dictionary)
         return json.dumps(output_list)
-    def agesearch_printout(self, input):
-        cursor = self.agesearch_sql(input)
-
-        for row in cursor:
-
-            print(row[0] + row[1])
 
     def close_connection(self):
         self.connection.close()
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     sql_interface = Olympics_SQL_Interface()
     sql_interface.establish_connection()
     user_interface = Olympics_User_Interface()
