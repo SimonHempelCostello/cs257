@@ -9,11 +9,13 @@ import sys
 import argparse
 import flask
 import json
+
 from olympics import Olympics_SQL_Interface
 
 app = flask.Flask(__name__)
 sql_interface = Olympics_SQL_Interface()
 sql_interface.establish_connection()
+
 @app.route('/')
 def home():
     return flask.render_template('help.html')
