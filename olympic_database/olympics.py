@@ -186,7 +186,8 @@ class Olympics_SQL_Interface():
         '''sql query for games list'''
         cursor = self.connection.cursor()
         query = '''SELECT  games.id, games.year, games.season, games.city
-                FROM games'''
+                FROM games
+                ORDER BY games.year'''
         try:
             cursor.execute(query)
         except Exception as e:
@@ -239,7 +240,7 @@ class Olympics_SQL_Interface():
                 print(e)
                 exit()
         return cursor
-        
+
     def json_output_games_medal_list(self, games_input, NOC_input = None):
         '''returns the JSON output contaning the data from the games medal list sql call'''
         cursor = self.games_medal_list(games_input,NOC_input)
