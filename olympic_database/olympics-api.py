@@ -48,8 +48,8 @@ class JSON_SQL_Olympics_Interface():
         output_list = []
         for row in cursor:
             row_dictionary = {}
-            row_dictionary["noc_id"] = row[0]
-            row_dictionary["region"] = row[1]
+            row_dictionary["abbreviation"] = row[0]
+            row_dictionary["name"] = row[1]
             output_list.append(row_dictionary)
         return json.dumps(output_list)
 
@@ -118,11 +118,11 @@ class JSON_SQL_Olympics_Interface():
         for row in cursor:
             row_dictionary = {}
             row_dictionary["athlete_id"] = row[0]
-            row_dictionary["name"] = row[1] + " " + row[2]
-            row_dictionary["sex"] = row[3]
-            row_dictionary["medal"] = row[4]
+            row_dictionary["athlete_name"] = row[1] + " " + row[2]
+            row_dictionary["athlete_sex"] = row[3]
             row_dictionary["sport"] = row[5]
             row_dictionary["event"] = row[6]
+            row_dictionary["medal"] = row[4]
             output_list.append(row_dictionary)
         return json.dumps(output_list)
 
