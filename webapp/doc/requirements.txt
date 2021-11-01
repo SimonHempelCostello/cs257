@@ -1,0 +1,58 @@
+Project By Simon Hempel-Costello and Lev Shuster
+
+Requirements and Features
+Our Dataset:
+	The dataset that we plan to use is 538’s database of Russian troll tweets and their posters. 
+    The data was gathered by the 538 team in collaboration with Clemson University. 
+    The data can be accessed here: https://github.com/fivethirtyeight/russian-troll-tweets
+    The data database is made up of colums such as author, contents, language, data published, 
+    followers at time collected, following # at time collected, updates, post type, tweet URL and more
+
+User Stories
+
+    STORY: a site guest can view a work cloud of the 3000 most commonly used words in twitter bot’s tweets,
+    with options to filter by date and tweet type, so the user can get a broad sense of what  bots’ tweets are focused on.
+
+    IMPLEMENTATION: the majority of the page will be filled with a word cloud set to default values, 
+    users can select from a drop down if they want to see the chart for retweets, quote tweets, or 
+    original tweets and they can select a range of dates to view the results. We will use a prepaid package to generate a word cloud.
+
+
+    STORY: a site guest can view the contents of a random tweet by selecting the button “I’m feeling lucky”, so a guest can jump straight 
+    into the contents of the dataset without knowing exactly what they are looking for
+
+    IMPLEMENTATION: Javascript random number generator will select a random number no greater than the maximum number of tweets in our database 
+    and request the tweet that has a corresponding ID. Very little data will be displayed. If the URLS for each tweet are still live we will 
+    just open the URL as an Iframe so the tweet gets displayed in a format that the users are used to (design principle not reinventing the wheel)
+
+
+    STORY: A site guest can, for a specific chosen twitter user, see a graph of the tweets that they made over a certain period of time, 
+    and the number of followers that the user had at the time of each single tweet. The tweets will be arrayed in chronological order, 
+    and would allow for a visualization of the correlation between the users twitter followers and the content of their tweets. 
+
+    IMPLEMENTATION:: For a searched user and a specified timeframe, the default being all of our data, a chart will be created which on the x axis 
+    graphs time, the y axis graphs the number of followers that the twitter user had at the point of tweets, and the actual data points correspond 
+    to the tweets made. The user could then hover over these data points to see the contents of the tweet
+
+
+    STORY: A site guest can, for a series of metrics, see the rankings of the various twitter users in our database based on those metrics. 
+    For example, this site user could ask to see the top 10 most followed twitter users in our database between some given set of dates, 
+    and would be given a list of these users with their names, and their maximum number of followers within that period 
+    (based on the data that we have).
+
+    IMPLEMENTATION: The majority of the page will be filled with a large chart ranking the various twitter users 
+    by some default metric, likely followers, for some default period of time, likely our entire dataset. 
+    They could then choose from a dropdown menu some other metric to rank the users by, or enter in some date constraints 
+    that the users would be filtered through, that is that the website would only take into account data that was gathered 
+    between the two given dates. 
+
+
+    STORY: A site guest can search for matching words or hashtags in the contents of the tweets and see matching tweets optionally filtering by year 
+    with the ability to open the Follower Chart that corresponds to any of the results. This is useful because it allows guests to answer specific 
+    questions on specific topics.
+
+    IMPLEMENTATION: At the top there will be a search bar, if the search term starts with a '#' 
+    it will only search for hashtags, AND/OR operators will not be supported to decrease the treat of SQL injection attacks. 
+    Below the search bar will be a pair of drop down data selector, to set the date range. Results will appear below these elements 
+    instead of in a new page so it is clear what the results correspond to. Each result will display most of the human readable information 
+    that the data base contains with a link text to generate the results of the Follower Chart page   
