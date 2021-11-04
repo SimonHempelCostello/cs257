@@ -1,4 +1,4 @@
-// code lossely based on some broken code from sebaoka
+// code lossely based on some broken code from sebaoka: https://embed.plnkr.co/JOI1fpgWIS0lvTeLUxUp/
 var timeFormat = 'MM/DD/YYYY';
 var config = {
     type: 'line',
