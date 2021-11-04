@@ -59,6 +59,7 @@ ul.horizontal-navbar {
     padding: 0;
     overflow: hidden;
     background-color: #f1f1f1;
+    width: 90%
 }
 
 ul.horizontal-navbar li {
@@ -78,4 +79,60 @@ ul.horizontal-navbar li a:hover {
     color: white;
 }
 
+h1.searchtitle {
+    text-align: left;
+}
+
+#user-search-bar{
+    width: 500px;
+
+}
+#user-query{
+    position:relative;
+    width:120%;
+    height:30px;
+}
+input.tweet-checkbox{
+    position:relative;
+    left:3%;
+}
+
+label.tweet-checkbox{
+    position:relative;
+    left:4%;
+}
+.tweet-date-filters-start{
+    position:relative;
+    right:5%;
+
+    float:right;
+    clear:right
+
+}
+.tweet-date-filters-end{
+    position:relative;
+    right:5%;
+    float:right;
+    clear:right;
+}
+
+#filter-bar{
+    position:absolute;
+    top:60%;
+    width:70%
+}
+
+ul.horizontal-filterbar {
+    bottom:100%;
+    font-size: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 30px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+ul.horizontal-filterbar li {
+    float: left;
+    float:top;
+}
 
