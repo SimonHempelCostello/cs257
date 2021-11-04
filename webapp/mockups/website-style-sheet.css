@@ -11,7 +11,7 @@
 
 * {
     font-family: Arial;
-    border-radius: 25px;
+    border-radius: 0;
 }
 body{
     margin: 3%;
@@ -88,7 +88,7 @@ h1.searchtitle {
 }
 
 #user-search-bar{
-    width: 500px;
+    width: 70%;
 
 }
 #user-query{
@@ -107,7 +107,7 @@ label.tweet-checkbox{
 }
 .tweet-date-filters-start{
     position:relative;
-    right:5%;
+    right:20%;
 
     float:right;
     clear:right
@@ -115,28 +115,53 @@ label.tweet-checkbox{
 }
 .tweet-date-filters-end{
     position:relative;
-    right:5%;
+    right:20%;
     float:right;
     clear:right;
 }
-
-#filter-bar{
-    position:absolute;
-    top:60%;
-    width:70%
+#tweet-filter-checkboxes{
+    position:relative;
+    left: 0%;
+    width:70%;
+    float:left;
 }
+#dates-div{
+    position:relative;
+    right:5%;
+    width:30%;
+    float:right;
+
+}
+
 
 ul.horizontal-filterbar {
-    bottom:100%;
+    margin-top:0;
     font-size: 100%;
     list-style-type: none;
-    margin: 0;
-    padding: 30px;
     overflow: hidden;
     background-color: #f1f1f1;
+    position:absolute;
+    top:60%;
+    width:50%;
 }
-ul.horizontal-filterbar li {
-    float: left;
-    float:top;
+ul.horizontal-filterbar li{
+    display:inline;
+    line-height:0px;
+    padding:5%;
 }
+
+ul.horizontal-filterbar button{
+    position:relative;
+    color:black;
+    border:none;
+    text-align:center;
+    font-size: 120%;
+    padding-right:7%;
+    float:left;
+}
+ul.horizontal-filterbar button:hover{
+    background-color: gray;
+}
+
+
 
