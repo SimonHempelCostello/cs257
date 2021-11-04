@@ -134,34 +134,73 @@ label.tweet-checkbox{
 }
 
 
-ul.horizontal-filterbar {
+#sort-bar {
     margin-top:0;
+    margin-right:5%;
+    margin-left:5px;
     font-size: 100%;
     list-style-type: none;
     overflow: hidden;
     background-color: #f1f1f1;
     position:absolute;
     top:60%;
-    width:50%;
+    width:30%
 }
-ul.horizontal-filterbar li{
+#sort-bar li{
     display:inline;
     line-height:0px;
-    padding:5%;
 }
 
-ul.horizontal-filterbar button{
+#sort-bar button{
     position:relative;
     color:black;
     border:none;
-    text-align:center;
     font-size: 120%;
     padding-right:7%;
     float:left;
+    float:top;
+    text-align: center;
 }
-ul.horizontal-filterbar button:hover{
+#sort-bar button:hover{
+    background-color: gray;
+}
+#order-bar {
+    margin-top:0;
+    margin-right:5%;
+    margin-left:5px;
+    font-size: 100%;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    position:absolute;
+    top:60%;
+    width:20%;
+    right:10%
+}
+#order-bar li{
+    display:inline;
+    line-height:0px;
+}
+
+#order-bar button{
+    position:relative;
+    color:black;
+    border:none;
+    font-size: 120%;
+    padding-right:7%;
+    float:left;
+    float:top;
+    text-align: center;
+}
+#order-bar button:hover{
     background-color: gray;
 }
 
-
-
+#result-table{
+    position:absolute;
+    top:70%;
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+}
