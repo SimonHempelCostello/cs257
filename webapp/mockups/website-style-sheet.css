@@ -17,6 +17,10 @@ body{
     margin: 3%;
 }
 
+follower-chart{
+    width:75%;
+}
+
 #heading-button{
     margin-bottom:3%;
     margin-top:3%;
