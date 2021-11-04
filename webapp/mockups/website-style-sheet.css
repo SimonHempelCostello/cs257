@@ -35,6 +35,13 @@ follower-chart{
     float:left;
     height: 130px;
 }
+#title-that-for-next-item-to-be-right{
+    margin-top: 10px;
+    height: auto;
+    float:left;
+    padding: 10px;
+    /* figure out hover behavior*/
+}
 
 #large-button{
     margin-right: 10px;
@@ -106,6 +113,7 @@ label.tweet-checkbox{
     left:4%;
 }
 .tweet-date-filters-start{
+    margin-top: 10px;
     position:relative;
     right:20%;
 
