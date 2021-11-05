@@ -1,12 +1,5 @@
 /*
-    sample4.css
-    2 May 2018
-
-    This sample tries to illustrate
-    - Separation of content from presentation
-    - More complicated CSS selector syntax
-        than we've seen before (e.g. contrast
-        ul versus ul.vertical-navbar)
+    by Simon Hempel Costello and Lev Shuster
 */
 
 * {
@@ -17,9 +10,7 @@ body{
     margin: 3%;
 }
 
-follower-chart{
-    width:75%;
-}
+
 
 #heading-button{
     margin-bottom:3%;
@@ -208,6 +199,11 @@ label.tweet-checkbox{
     text-align: center;
     
 }
+
+follower-chart{
+    width:75%;
+}
+
 .results-table{
     border: 1px solid black;
     border-collapse: collapse;
