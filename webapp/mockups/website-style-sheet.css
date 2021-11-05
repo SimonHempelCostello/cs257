@@ -150,9 +150,7 @@ label.tweet-checkbox{
     list-style-type: none;
     overflow: hidden;
     background-color: #f1f1f1;
-    position:absolute;
-    top:60%;
-    width:30%
+
 }
 #sort-bar li{
     display:inline;
@@ -180,10 +178,7 @@ label.tweet-checkbox{
     list-style-type: none;
     overflow: hidden;
     background-color: #f1f1f1;
-    position:absolute;
-    top:60%;
-    width:20%;
-    right:10%
+
 }
 #order-bar li{
     display:inline;
@@ -204,11 +199,21 @@ label.tweet-checkbox{
     background-color: gray;
 }
 
-#result-table{
-    position:absolute;
-    top:70%;
-    width:90%;
+#results-list{
+    list-style: none;
+
     margin-left:auto;
     margin-right:auto;
     text-align: center;
+    
+}
+.results-table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.results-table tr, th, td{
+    border:1px solid black;
+}
+.top-level-table-heading{
+    background-color: #40d2ff;
 }
