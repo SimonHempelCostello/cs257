@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Follower Chart</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <link rel="stylesheet" href="website-style-sheet.css" type="text/css" />
+    <script src="follower-chart.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+</head>
+
+<body>
+
+    <ul class="horizontal-navbar">
+        <li><a href="homepage.html"> <img src="logo.png" id="logo-image">
+        </a></li>
+        <li><a href="word-cloud.html">Word Cloud</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="rankings.html">Rankings</a></li>
+        <li><a href="im-feeling-luckey.html">I'm Feeling Luckey</a></li>
+        <li><a href="about.html">About</a></li>
+
+    </ul>
+
+    <div id="title-that-for-next-item-to-be-right">
+        <h1>Twitter User: AUSTINLOVESBEER</h1>
+    </div>
+    <div id = "dates-div">
+        <label class = "tweet-date-filters-start" for = "tweet-filter-start"> Start Date:</label>
+        <input type="date"class = "tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2012-02-01"min="2012-02-01" max="2018-05-31">
+        <label class = "tweet-date-filters-end" for = "tweet-filter-end"> End Date:</label>
+        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2012-02-01"min="2012-02-01" max="2018-05-31">
+    </div>
+    <div char>
+        <canvas id="follower-chart"></canvas>
+    </div>
+</body>
+</html>
