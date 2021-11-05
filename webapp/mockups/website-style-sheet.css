@@ -150,6 +150,7 @@ label.tweet-checkbox{
     list-style-type: none;
     overflow: hidden;
     background-color: #f1f1f1;
+    width:auto;
 
 }
 #sort-bar li{
@@ -212,8 +213,9 @@ label.tweet-checkbox{
     border-collapse: collapse;
 }
 .results-table tr, th, td{
-    border:1px solid black;
+    border:1px solid white;
 }
 .top-level-table-heading{
-    background-color: #49b2d1;
+    background-color: #f1f1f1;
 }
+

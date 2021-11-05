@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter Bot Information</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <link rel="stylesheet" href="website-style-sheet.css" type="text/css" />
+</head>
+
+<body>
+
+    <ul class="horizontal-navbar">
+        <li><a href="homepage.html"> <img src="logo.png" id="logo-image">
+        </a></li>
+        <li><a href="word-cloud.html">Word Cloud</a></li>
+        <li><a href="search.html">🔍 Search</a></li>
+        <li><a href="rankings.html">Rankings</a></li>
+        <li><a href="im-feeling-luckey.html">I'm Feeling Luckey</a></li>
+        <li><a href="about.html">About</a></li>
+
+    </ul>
+
+    <h1>What are Bots Tweeting about</h3>
+    <img src="6a00d83451658a69e2017c318a0f4e970b.jpg" id="content-image">
+
+
+
+
+    <h2>Types of Tweets to Include</h2>
+    <div id = "dates-div">
+        <label class = "tweet-date-filters-start" for = "tweet-filter-start"> Start Date:</label>
+        <input type="date"class = "tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2012-02-01"min="2012-02-01" max="2018-05-31">
+        <label class = "tweet-date-filters-end" for = "tweet-filter-end"> End Date:</label>
+        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2012-02-01"min="2012-02-01" max="2018-05-31">
+    </div>
+    <form id = "tweet-filter-checkboxes">
+        <input type="checkbox" id="show-tweets" name="show-tweets" value="tweets" class = "tweet-checkbox">
+        <label for="show-tweets" class = "tweet-checkbox">Original Tweets</label><br>
+        <input type="checkbox" id="show-retweets" name="show-retweets" value="retweets" class = "tweet-checkbox">
+        <label for="show-retweets" class = "tweet-checkbox"> Retweets</label><br>
+        <input type="checkbox" id="show-quote-tweets" name="show-quote-tweets" value="quote-tweets" class = "tweet-checkbox">
+        <label for="show-quote-tweets" class = "tweet-checkbox"> Quote Tweets</label><br>
+   
+    </form>
+    <ul class="horizontal-sortbar" id = "sort-bar">
+        <li><button type = "button">Number of Followers</button></li>
+        <li><button type = "button">Number of Posts</button></li>
+        <li><button typej = "button">Keyword Frequency</button></li>
+    </ul>
+
+    <ul id = "order-bar">
+        <li><button type = "button">Submit</button></li>
+    </ul>
+    <ul id = "results-list">
+
+    </ul>
+
+
+
+    
+</body>
+</html>
