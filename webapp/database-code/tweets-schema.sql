@@ -2,6 +2,7 @@ CREATE TABLE tweets(
     tweet_content text,
     tweet_language text,
     publish_date DATETIME, 
+    post_type text,
     is_retweet integer,
     tweet_id integer
 );
