@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter Bot Information</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='website-style-sheet.css') }}" />
+</head>
+
+<body>
+
+    <ul class="horizontal-navbar">
+        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image">
+        </a></li>
+        <li><a href="{{ url_for('word_cloud')}}">Word Cloud</a></li>
+        <li><a href="{{ url_for('search')}}">🔍 Search</a></li>
+        <li><a href="{{ url_for('rankings')}}">Rankings</a></li>
+        <li><a href="{{ url_for('im_feeling_lucky')}}">I'm Feeling Lucky</a></li>
+        <li><a href="{{ url_for('about_page')}}">About</a></li>
+    </ul>
+
+    <a href="im-feeling-luckey.html"> <!--make sure it reloads in a way that picks a new random tweet-->
+        <div id="heading-button">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/shuffle-62-475053.png" id="starter-image">
+            <h1>I'm Feeling Luckey - Read a Random Twitter Bot Tweet</h1>
+            <p>Click to Read a Diffrent Tweet</p>
+        </div>
+    </a>
+    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">[Despite the negative press <a href="https://twitter.com/hashtag/covfefe?src=hash&amp;ref_src=twsrc%5Etfw">#covfefe</a>] look at what&#39;s going on. They shoot media. Usually that&#39;s a bad sign of things to come.</p>&mdash; DeepDrumpf (@DeepDrumpf) <a href="https://twitter.com/DeepDrumpf/status/869813321125449728?ref_src=twsrc%5Etfw">May 31, 2017</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>
