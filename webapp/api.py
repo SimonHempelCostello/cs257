@@ -18,8 +18,8 @@ def get_connection():
         config module. May raise an exception as described in the
         documentation for psycopg2.connect. '''
     return psycopg2.connect(database=config.database,
-                            user=config.user,
-                            password=config.password)
+                            user=config.username
+                            )
 
 @api.route('/authors/') 
 def get_authors():
@@ -63,26 +63,37 @@ def get_authors():
 
     return json.dumps(author_list)
 
-@api.route('/books/author/<author_id>')
-def get_books_for_author(author_id):
-    query = '''SELECT books.id, books.title, books.publication_year
-               FROM books, authors, books_authors
-               WHERE books.id = books_authors.book_id
-                 AND authors.id = books_authors.author_id
-                 AND authors.id = %s
-               ORDER BY books.publication_year'''
-    book_list = []
+@api.route('/search/input/<search_query>')
+def get_books_for_author(search_query):
+    return json_output_tweet_search(search_query)
+
+def tweet_search_sql(input_query):
+    '''sql for getting the list of medals at a specified games from a certain dictionary'''
+    cursor = get_connection().cursor()
+
+    query = '''SELECT DISTINCT tweets.tweet_content, authors.author_name, tweet_instance.followers, tweet_instance.accounts_followed, tweets.publish_date
+    FROM tweets, authors, tweet_instance
+    WHERE authors.external_author_id = tweet_instance.author_id
+    AND tweets.tweet_id = tweet_instance.tweet_id
+    and tweets.tweet_content LIKE %(input_query)s'''
+        
     try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (author_id,))
-        for row in cursor:
-            book = {'id':row[0], 'title':row[1], 'publication_year':row[2]}
-            book_list.append(book)
-        cursor.close()
-        connection.close()
+        cursor.execute(query, ({'input_query':'%'+input_query+'%'}))
     except Exception as e:
-        print(e, file=sys.stderr)
-
-    return json.dumps(book_list)
-
+        print(e)
+        exit()
+    return cursor
+def json_output_tweet_search( query):
+    '''returns the JSON output contaning the data from the games medal list sql call'''
+    cursor = tweet_search_sql(query)
+    output_list = []
+    for row in cursor:
+        row_dictionary = {}
+        row_dictionary["content"] = row[0]
+        row_dictionary["author_name"] = row[1]
+        row_dictionary["followers"] = row[2]
+        row_dictionary["followed"] = row[3]
+        row_dictionary["date"] = row[4]
+        output_list.append(row_dictionary)
+    print(output_list)
+    return json.dumps(output_list)
