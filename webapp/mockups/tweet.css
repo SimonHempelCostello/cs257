@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-family: "Roboto", sans-serif;
+  }
+  
+  body {
+    background-color: #f7f8f9;
+    color: #0f1419;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-tap-highlight-color: transparent;
+  }
+  main {
+    flex: 1;
+    max-width: 1024px;
+    width: 100%;
+    margin: auto;
+    padding: 32px 16px;
+    display: flex;
+    align-items: flex-start;
+  }
+  main .tweet-desk {
+    background-color: white;
+    border: 1px #dde7ef solid;
+    border-radius: 8px;
+    padding: 24px;
+    margin-left: 16px;
+    position: sticky;
+    top: 16px;
+    z-index: 10;
+  }
+  main .tweet-desk h2 {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  main .tweet-desk .tweet_box {
+    border: 1px #eff3f4 solid;
+    background-color: white;
+    margin: 32px 0 34px;
+    width: 440px;
+  }
+  main .tweet-desk .tweet {
+    border: 1px transparent solid;
+    background-color: white;
+    padding: 0 16px;
+    font-size: 15px;
+    width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  main .tweet-desk .tweet .head {
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+  main .tweet-desk .tweet .head .title .text .top {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+  main .tweet-desk .tweet .content .message {
+    padding-top: 16px;
+    font-size: 23px;
+  }
+  main .tweet-desk .tweet .content .tweet_info {
+    color: #536471;
+    padding: 16px 0;
+    display: flex;
+  }
+  main .tweet-desk .tweet .stats {
+    border-top: 1px #eff3f4 solid;
+    color: #536471;
+    padding: 16px 4px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  main .tweet-desk .tweet .stats .stat {
+    margin-right: 24px;
+  }
+  main .tweet-desk .tweet .stats .stat .count {
+    font-weight: 700;
+    color: #0f1419;
+  }
