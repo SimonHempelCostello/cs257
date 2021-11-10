@@ -1,0 +1,217 @@
+/*
+    by Simon Hempel Costello and Lev Shuster
+*/
+
+* {
+    font-family: Arial;
+    border-radius: 0;
+}
+body{
+    margin: 3%;
+}
+
+
+
+#heading-button{
+    margin-bottom:3%;
+    margin-top:3%;
+    height: auto;
+    color: black;
+    background-color: #f1f1f1;
+    padding: 10px;
+
+}
+
+#starter-image{
+    float:left;
+    height: 130px;
+}
+#title-that-for-next-item-to-be-right{
+    margin-top: 10px;
+    height: auto;
+    float:left;
+    padding: 10px;
+    /* figure out hover behavior*/
+}
+
+#large-button{
+    margin-right: 10px;
+    width: 20%;
+    height: auto;
+    float:left;
+    color: black;
+    padding: 10px;
+    background-color: #f1f1f1;
+    /* figure out hover behavior*/
+}
+
+#logo-image{
+    height: 35px;
+}
+
+#content-image{
+    width: 90%;
+}
+
+/* Horizontal navigation */
+ul.horizontal-navbar {
+    font-size: 150%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    width: 90%
+}
+
+ul.horizontal-navbar li {
+    float: left;
+}
+
+ul.horizontal-navbar li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.horizontal-navbar li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+h1.searchtitle {
+    text-align: left;
+}
+
+#user-search-bar{
+    width: 70%;
+
+}
+#user-query{
+    position:relative;
+    width:120%;
+    height:30px;
+}
+input.tweet-checkbox{
+    position:relative;
+    left:3%;
+}
+
+label.tweet-checkbox{
+    position:relative;
+    left:4%;
+}
+.tweet-date-filters-start{
+    margin-top: 10px;
+    position:relative;
+    right:20%;
+
+    float:right;
+    clear:right
+
+}
+.tweet-date-filters-end{
+    position:relative;
+    right:20%;
+    float:right;
+    clear:right;
+}
+#tweet-filter-checkboxes{
+    position:relative;
+    left: 0%;
+    width:70%;
+    float:left;
+}
+#dates-div{
+    position:relative;
+    right:5%;
+    width:30%;
+    float:right;
+
+}
+
+
+#sort-bar {
+    margin-top:0;
+    margin-right:5%;
+    margin-left:5px;
+    font-size: 100%;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    width:auto;
+
+}
+#sort-bar li{
+    display:inline;
+    line-height:0px;
+}
+
+#sort-bar button{
+    position:relative;
+    color:black;
+    border:none;
+    font-size: 120%;
+    padding-right:7%;
+    float:left;
+    float:top;
+    text-align: center;
+}
+#sort-bar button:hover{
+    background-color: gray;
+}
+#order-bar {
+    margin-top:0;
+    margin-right:5%;
+    margin-left:5px;
+    font-size: 100%;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+
+}
+#order-bar li{
+    display:inline;
+    line-height:0px;
+}
+
+#order-bar button{
+    position:relative;
+    color:black;
+    border:none;
+    font-size: 120%;
+    padding-right:7%;
+    float:left;
+    float:top;
+    text-align: center;
+}
+#order-bar button:hover{
+    background-color: gray;
+}
+
+#results-list{
+    list-style: none;
+
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+    
+}
+
+follower-chart{
+    width:75%;
+}
+
+.results-table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.results-table tr, th, td{
+    border:1px solid white;
+}
+.top-level-table-heading{
+    background-color: #f1f1f1;
+}
+

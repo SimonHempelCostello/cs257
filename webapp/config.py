@@ -1,0 +1,2 @@
+username = "simonhc"
+database = "tweets"

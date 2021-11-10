@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='website-style-sheet.css') }}" />
+</head>
+
+<body>
+
+    <ul class="horizontal-navbar">
+        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image">
+        </a></li>
+        <li><a href="{{ url_for('word_cloud')}}">Word Cloud</a></li>
+        <li><a href="{{ url_for('search')}}">🔍 Search</a></li>
+        <li><a href="{{ url_for('rankings')}}">Rankings</a></li>
+        <li><a href="{{ url_for('im_feeling_lucky')}}">I'm Feeling Lucky</a></li>
+        <li><a href="{{ url_for('about_page')}}">About</a></li>
+    </ul>
+
+    <h1>About Us</h3>
+        <a href="https://github.com/SimonHempelCostello/cs257/tree/main/webapp">
+            <div id="large-button">
+                <h3>Our Github</h3>
+            </div>
+        </a>
+        <a href="mailto: shusterlev@carleton.edu">
+            <div id="large-button">
+                <h3>Contact Us</h3>
+            </div>
+        </a>
+        <p>This project is by Simon Hempel Costello and Lev Shuster based on 538’s collaboration with Clemson University. 
+        </p><br><br>
+        <a href="https://cs.carleton.edu/faculty/jondich/courses/cs257_f21/">
+            <div id="large-button">
+                <h3>The Class Site that Motivated This Project</h3>
+            </div>
+        </a>
+        <a href="https://github.com/fivethirtyeight/russian-troll-tweets">
+            <div id="large-button">
+                <h3>Github for the Original Data by 538</h3>
+            </div>
+        </a>
+</body>
+</html>

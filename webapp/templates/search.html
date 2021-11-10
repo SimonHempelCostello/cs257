@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter Bot Search</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='website-style-sheet.css') }}" />
+    <script src="{{ url_for('static', filename='search.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+    <ul class="horizontal-navbar">
+        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image">
+        </a></li>
+        <li><a href="{{ url_for('word_cloud')}}">Word Cloud</a></li>
+        <li><a href="{{ url_for('search')}}">🔍 Search</a></li>
+        <li><a href="{{ url_for('rankings')}}">Rankings</a></li>
+        <li><a href="{{ url_for('im_feeling_lucky')}}">I'm Feeling Lucky</a></li>
+        <li><a href="{{ url_for('about_page')}}">About</a></li>
+    </ul>
+    <h1 class = "searchtitle">Search The Contents of 3 Million Bot Tweets</h1>
+    <form id = "user-search-bar">
+        <input type = "search" id = "user-query" placeholder = "Search"  >
+    </form>
+
+    <button type = "button" id = "search_button" onclick ="search_data_base()">Search!</button>
+
+    <h2> Tweet Types</h2>
+    <div id = "dates-div">
+        <label class = "tweet-date-filters-start" for = "tweet-filter-start"> Start Date:</label>
+        <input type="date"class = "tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2012-02-01"min="2012-02-01" max="2018-05-31">
+        <label class = "tweet-date-filters-end" for = "tweet-filter-end"> End Date:</label>
+        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2012-02-01"min="2012-02-01" max="2018-05-31">
+    </div>
+    <form id = "tweet-filter-checkboxes">
+        <input type="checkbox" id="show-tweets" name="show-tweets" value="tweets" class = "tweet-checkbox">
+        <label for="show-tweets" class = "tweet-checkbox">Original Tweets</label><br>
+        <input type="checkbox" id="show-retweets" name="show-retweets" value="retweets" class = "tweet-checkbox">
+        <label for="show-retweets" class = "tweet-checkbox"> Retweets</label><br>
+        <input type="checkbox" id="show-quote-tweets" name="show-quote-tweets" value="quote-tweets" class = "tweet-checkbox">
+        <label for="show-quote-tweets" class = "tweet-checkbox"> Quote Tweets</label><br>
+   
+    </form>
+
+    <h2> Sort By</h2>
+    <ul id = "sort-bar">
+        <li><button type = "button">Date</button></li>
+        <li><button type = "button">Followers</button></li>
+        <li><button type = "button">Alphabetically By Author</button></li>
+    </ul>
+    <ul id = "order-bar">
+        <li><button type = "button">Ascending</button></li>
+        <li><button type = "button">Descending</button></li>
+    </ul>
+    <ul id = "order-bar">
+        <li><button type = "button">Submit</button></li>
+    </ul>
+
+    <h2 id = "results-heading"> Results</h2>
+</body>
+</html>
