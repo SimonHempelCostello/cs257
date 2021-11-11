@@ -1,4 +1,0 @@
-tweets.csv filter=lfs diff=lfs merge=lfs -text
-tweets_authors.csv filter=lfs diff=lfs merge=lfs -text
-authors.csv filter=lfs diff=lfs merge=lfs -text
-*.csv filter=lfs diff=lfs merge=lfs -text
