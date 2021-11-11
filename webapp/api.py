@@ -1,9 +1,7 @@
 '''
     api.py
-    Simon Hempel-Costello, 25 April 2016
-    Updated 8 November 2021
-
-    Tiny Flask API to support the tiny books web application.
+    Simon Hempel-Costello, Lev Schuster
+    25 April 2016
 '''
 import sys
 import flask

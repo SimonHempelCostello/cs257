@@ -1,10 +1,7 @@
 '''
     app.py
-    Jeff Ondich, 25 April 2016
-    Updated 8 November 2021
-
-    A small Flask application that provides a barelywebsite with an accompanying
-    API (which is also tiny) to support that website.
+    Simon Hempel-Costello, Lev Schuster
+    25 April 2016
 '''
 import flask
 import argparse

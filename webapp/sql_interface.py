@@ -1,3 +1,8 @@
+'''
+    sql_interface.py
+    Simon Hempel-Costello, Lev Schuster
+    25 April 2016
+'''
 import json
 import config
 import psycopg2
