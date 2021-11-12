@@ -1,0 +1,2 @@
+The only page that interfaces with our database is the Search.html page which is accessible via the Search link on the index page. 
+Searches are not able to be done through the enter key, but instead must be completed by preasing the 'search!' button. 

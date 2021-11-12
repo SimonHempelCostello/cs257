@@ -22,8 +22,8 @@ function generate_table_row(header, query, tweet) {
 }
 
 function search_data_base() {
-    let input = document.getElementById("user-query").value;
-    let url = getAPIBaseURL() + "/search/input/" + input;
+    let input = document.getElementById('user-query').value;
+    let url = getAPIBaseURL() + '/search/input/' + input;
 
     fetch(url, { method: 'get' })
 
@@ -37,14 +37,15 @@ function search_data_base() {
         }
         for (let k = 0; k < table_length; k++) {
             tweet = tweet_list[k];
-            table_body += '<li> <table style="width:100%" class = "results-table"> <tr class = "top-level-table-heading"> <th><a href="follower-chart.html">Bot Account</a></th><td> <a href="follower-chart.html">' + tweet['author_name'] + '</a></td></tr>';
-            table_body += generate_table_row("Content", 'content', tweet);
-            table_body += generate_table_row("Followers", 'followers', tweet);
-            table_body += generate_table_row("Following", 'followed', tweet);
-            table_body += generate_table_row("Date Published", 'date', tweet);
+            table_body += "<li> <table style='width:100%' class = 'results-table'> <tr class = 'top-level-table-heading'> <th><a href='{{ url_for('follower_chart')}}'>Bot Account</a></th><td><a href='{{ url_for('follower_chart')}}'>" + tweet['author_name'] + "</a></td></tr>";
+
+            table_body += generate_table_row('Content', 'content', tweet);
+            table_body += generate_table_row('Followers', 'followers', tweet);
+            table_body += generate_table_row('Following', 'followed', tweet);
+            table_body += generate_table_row('Date Published', 'date', tweet);
             table_body += '</table></li>'
         }
-        let list = document.getElementById("results-list");
+        let list = document.getElementById('results-list');
         if (list) {
             list.innerHTML = table_body;
         }
