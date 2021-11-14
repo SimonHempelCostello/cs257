@@ -24,7 +24,7 @@ def word_cloud():
     return flask.render_template('word-cloud.html')
 @app.route('/about') 
 def about():
-    return flask.render_template('about.html')
+    return flask.render_template('about.html') #why do we have two about pages?
 @app.route('/about') 
 def about_page():
     return flask.render_template('about.html')
@@ -34,9 +34,12 @@ def im_feeling_lucky():
 @app.route('/rankings') 
 def rankings():
     return flask.render_template('rankings.html')      
-@app.route('/follower_chart') 
-def follower_chart():
-    return flask.render_template('follower-chart.html')   
+# @app.route('/follower_chart') # should remove this in final version
+# def follower_chart():
+#     return flask.render_template('follower-chart.html')   
+@app.route('/follower_chart/<account_id>')
+def graph_account(account_id):
+    return flask.render_template('follower-chart.html')
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A database hosting tweets and associated data from Clemsons social media listener, including API & DB')
     parser.add_argument('host', help='the host to run on')
