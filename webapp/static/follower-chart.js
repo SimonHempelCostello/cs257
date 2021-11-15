@@ -1,40 +1,74 @@
-// code lossely based on some broken code from sebaoka: https://embed.plnkr.co/JOI1fpgWIS0lvTeLUxUp/
-var timeFormat = 'MM/DD/YYYY';
-var config = {
-    type: 'line',
-    data: {
-        datasets: [{
-            label: "AUSTINLOVESBEER",
-            data: [{ x: "4/3/2015", y: 45 }, { x: "6/25/2015", y: 48 }, { x: "8/30/2015", y: 52 }, { x: "11/26/2015", y: 70 }, { x: "3/31/2018", y: 65 }, { x: "7/8/2018", y: 41 }, ],
-            fill: true,
-            borderColor: "#c45850"
-        }]
-    },
-    options: {
-        responsive: true,
-        title: { display: true, text: "Follower Count When Bot Tweets" },
-        scales: {
-            xAxes: [{
-                type: "time",
-                time: {
-                    format: timeFormat,
-                },
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Number of Followers'
+// code lossely based on some broken code from sebaoka: https://stackoverflow.com/questions/55428160/wrong-label-value-is-displayed-on-point-hover-chart-js
+var timeFormat = 'YYYY/MM/DD';
+
+function getAccountName() {
+    let accountName = window.location.pathname
+    return accountName.substr("/follower_chart/".length);
+}
+function getAPIBaseURL() {
+    let baseURL = window.location.protocol +
+        '//' + window.location.hostname +
+        ':' + window.location.port +
+        '/api';
+    return baseURL;
+}
+
+function getData() {
+    let url = getAPIBaseURL() + '/follower-chart/input/' + getAccountName();
+    console.log(url);
+    fetch(url, { method: 'get' })
+
+    .then((response) => response.json())
+
+    .then(function(data2) {
+        console.log(data2);
+        var config = {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: getAccountName(),
+                    data: data2,
+                    fill: true,
+                    borderColor: "#c45850"
+                }]
+            },
+            options: {
+                responsive: true,
+                title: { display: true, text: "Follower Count When Bot Tweets" },
+                scales: {
+                    xAxes: [{
+                        type: "time",
+                        time: {
+                            format: timeFormat,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Number of Followers'
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }]
                 }
-            }],
-            yAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Date'
-                }
-            }]
-        }
-    }
+            }
+        };
+        return config;
+    })
+    .then(function(config) {
+        console.log(config);
+        var canvas_element = document.getElementById("follower-chart").getContext("2d");
+        window.myLine = new Chart(canvas_element, config);
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
 };
 
+
 window.onload = function() {
-    var canvas_element = document.getElementById("follower-chart").getContext("2d");
-    window.myLine = new Chart(canvas_element, config);
+    document.getElementById("title").innerHTML = getAccountName();
+    getData();
 };
