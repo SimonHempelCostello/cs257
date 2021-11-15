@@ -49,6 +49,8 @@ def user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, h
     '''sql for getting the list of medals at a specified games from a certain dictionary'''
     cursor = get_connection().cursor()
     hide_value = 2
+    print(start_date)
+    print(end_date)
     if(hide_original_tweets and hide_retweets):
         return None
     elif(hide_original_tweets):
@@ -80,6 +82,7 @@ def json_output_user_rankings( sort_metric = 'tweet_instance.followers', start_d
         row_dictionary["sorting_data"] = row[1]
 
         output_list.append(row_dictionary)
+    print(json.dumps(output_list))
     return json.dumps(output_list)
 
 '''sql for getting the changes in follower count to graph'''
