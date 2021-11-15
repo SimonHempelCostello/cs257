@@ -33,10 +33,10 @@ def im_feeling_lucky():
     return flask.render_template('im-feeling-lucky.html')
 @app.route('/rankings') 
 def rankings():
-    return flask.render_template('rankings.html')      
-# @app.route('/follower_chart') # should remove this in final version
-# def follower_chart():
-#     return flask.render_template('follower-chart.html')   
+    return flask.render_template('rankings.html')     
+@app.route('/tweet') 
+def tweet():
+    return flask.render_template('tweet.html')    
 @app.route('/follower_chart/<account_id>')
 def graph_account(account_id):
     return flask.render_template('follower-chart.html')
