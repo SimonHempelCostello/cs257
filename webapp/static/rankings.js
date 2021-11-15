@@ -12,6 +12,10 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
+function change_button_color() {
+
+}
+
 function generate_table_row(header, query, tweet) {
     output_string = '<tr class = "results-table">';
     output_string += '<th>' + header + '</th>';

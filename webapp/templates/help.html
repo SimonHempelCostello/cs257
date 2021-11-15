@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie API reference</title>
+</head>
+<body>
+    <pre>Movie API: endpoint reference
+All responses are in JSON
+
+REQUEST: /
+RESPONSE:
+    Main page containing api information
+
+REQUEST: /help
+RESPONSE:
+    This message
+
+REQUEST: /random-tweet/
+
+GET parameters
+    None
+
+RESPONSE: A randomly chosen tweet from our database. Will contain only the basic tweet information such as account, 
+content, and followers of the user that posted. Designed to help the user first navigate the database.
+
+
+   author_name (TEXT) - the account name for the user that posted the tweet. 
+   followers (Integer)- the number of followers that the account had at time of posting.
+   publish_date (DateTime)- the time at which the tweet was published
+   tweet_content(text)- the actual content of the tweet
+
+EXAMPLE(S):
+    /random-tweet/ 
+       [{"author_name": "BAUMAN_OFF", "followers": 3133, "date": "2016/8/16", "content": "9th person has died in historic Louisiana flood TV station reports  #news"}]
+
+
+REQUEST: /search/input/
+
+GET parameters
+    search_query- return only those tweets that case insenstively contain the search query
+
+RESPONSE: A randomly chosen tweet from our database. Will contain only the basic tweet information such as account, 
+content, and followers of the user that posted. Designed to help the user first navigate the database.
+
+
+   author_name (TEXT) - the account name for the user that posted the tweet. 
+   followers (INTEGER)- the number of followers that the account had at time of posting.
+   publish_date (DateTime)- the time at which the tweet was published
+   tweet_content(TEXT)- the actual content of the tweet
+   accounts_followed(INTEGER)- the number of accounts this twitter user followed at the time of tweeting
+
+EXAMPLE(S):
+    /api/search/input/RT%20coloradodon1:%20
+    [{"content": "RT coloradodon1: #MAGA Agree no one in the streets of Charlotte are part of the #Trumptrain as the MSM &amp; Liberals \u2026 https:t.coFyKRrRFON3", "author_name": "BARRY_MILL", "followers": 1, "followed": 0, "date": "2017/8/14"}
+    ,{"content": "RT coloradodon1: #MAGA Agree no one in the streets of Charlotte are part of the #Trumptrain as the MSM &amp; Liberals \u2026 https:t.coH876MHraO5", "author_name": "ALLFORPETERSONS", "followers": 2, "followed": 19, "date": "2017/8/14"}
+    ,{"content": "RT coloradodon1: #MAGA Agree no one in the streets of Charlotte are part of the #Trumptrain as the MSM &amp; Liberals \u2026 https:t.coxfZ2N3lXUH", "author_name": "AMERICANALBERT", "followers": 2, "followed": 23, "date": "2017/8/14"}] 
+REQUEST: /follower-chart/input/
+
+GET parameters
+    search_query- return only those tweets made by the user with name maching the search query
+
+RESPONSE: A randomly chosen tweet from our database. Will contain only the basic tweet information such as account, 
+content, and followers of the user that posted. Designed to help the user first navigate the database.
+
+
+   y (INTEGER)- the number of followers that the account had at time of posting.
+   x (DateTime)- the time at which the tweet was published
+
+EXAMPLE(S):
+    /follower_chart/BALTIMORE0NLINE  
+    [{"y": 59, "x": "2015/5/18"}, {"y": 59, "x": "2015/7/21"}, {"y": 59, "x": "2015/7/25"}, 
+    {"y": 59, "x": "2015/7/30"}, {"y": 59, "x": "2015/7/31"}, {"y": 57, "x": "2015/7/4"}, 
+    {"y": 59, "x": "2015/8/18"}, {"y": 58, "x": "2015/8/27"}, {"y": 58, "x": "2015/8/29"}, 
+    {"y": 55, "x": "2015/9/14"}, {"y": 55, "x": "2015/9/6"}, {"y": 6417, "x": "2017/1/1"}]
+REQUEST: /follower-chart/input/
+
+GET parameters
+    input_json- contains a JSON string which holds these parameters:
+        input_start_date = the earliest that tweets in the returned dataset can be published
+        input_end_date = the latest that tweets in the returned database can be published
+        input_hide_original_tweets= Whether original tweets should be removed from the selected database
+        input_hid_retweets = Whether retweets should be removed from the database
+
+RESPONSE: A randomly chosen tweet from our database. Will contain only the basic tweet information such as account, 
+content, and followers of the user that posted. Designed to help the user first navigate the database.
+
+
+   y (INTEGER)- the number of followers that the account had at time of posting.
+   x (DateTime)- the time at which the tweet was published
+
+EXAMPLE(S):
+    /follower_chart/BALTIMORE0NLINE  
+    [{"y": 59, "x": "2015/5/18"}, {"y": 59, "x": "2015/7/21"}, {"y": 59, "x": "2015/7/25"}, 
+    {"y": 59, "x": "2015/7/30"}, {"y": 59, "x": "2015/7/31"}, {"y": 57, "x": "2015/7/4"}, 
+    {"y": 59, "x": "2015/8/18"}, {"y": 58, "x": "2015/8/27"}, {"y": 58, "x": "2015/8/29"}, 
+    {"y": 55, "x": "2015/9/14"}, {"y": 55, "x": "2015/9/6"}, {"y": 6417, "x": "2017/1/1"}]
+    </pre>
+</body>
+</html>
+

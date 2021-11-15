@@ -64,7 +64,6 @@ def user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, h
     AND tweets.is_retweet != %(hide_value)s
     GROUP BY authors.author_name
     ORDER BY MAX('''+sort_metric+''') DESC;'''
-    print(check_sql_string(query, ({ 'start_date':start_date, 'end_date':end_date, 'hide_value':hide_value})))
     try:
         cursor.execute(query, ({ 'start_date':start_date, 'end_date':end_date, 'hide_value':hide_value}))
     except Exception as e:
@@ -111,6 +110,8 @@ def json_output_followers_over_time(query):
         row_dictionary["x"] = row[1]
 
         output_list.append(row_dictionary)
+    print(json.dumps(output_list))
+
     return json.dumps(output_list)
 
 def check_sql_string(sql, values):

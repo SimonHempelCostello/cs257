@@ -40,6 +40,9 @@ def tweet():
 @app.route('/follower_chart/<account_id>')
 def graph_account(account_id):
     return flask.render_template('follower-chart.html')
+@app.route('/help')
+def get_help():
+    return flask.render_template('help.html')
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A database hosting tweets and associated data from Clemsons social media listener, including API & DB')
     parser.add_argument('host', help='the host to run on')

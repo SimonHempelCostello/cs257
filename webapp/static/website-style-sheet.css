@@ -88,6 +88,7 @@ h1.searchtitle {
 
 #user-search-bar {
     width: 70%;
+    margin-left: 5px;
 }
 
 #user-query {
@@ -193,6 +194,20 @@ label.tweet-checkbox {
 }
 
 #order-bar button:hover {
+    background-color: gray;
+}
+
+#results-button {
+    position: relative;
+    color: black;
+    border: none;
+    font-size: 180%;
+    padding-left: 0%;
+    text-align: center;
+    margin-left: 5px;
+}
+
+#results-button:hover {
     background-color: gray;
 }
 
