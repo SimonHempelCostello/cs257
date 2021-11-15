@@ -46,7 +46,9 @@ function search_data_base() {
         }
         for (let k = 0; k < table_length; k++) {
             user = user_list[k];
-            table_body += "<li> <table style='width:100%' class = 'results-table'> <tr class = 'top-level-table-heading'> <th><a href='{{ url_for('follower_chart')}}'>Bot Account</a></th><td><a href='{{ url_for('follower_chart')}}'>" + user['author_name'] + "</a></td></tr>";
+            table_body += "<li> <table style='width:100%' class = 'results-table'> <tr class = 'top-level-table-heading'> <th><a>Bot Account</a></th><td><a href='/follower_chart/"
+            table_body += user['author_name']
+            table_body += "'>" + user['author_name'] + "</a></td></tr>";
             table_body += generate_table_row('Followers', 'sorting_data', user);
 
             table_body += '</table></li>'

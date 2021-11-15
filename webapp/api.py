@@ -9,7 +9,12 @@ import sql_interface
 import json
 
 api = flask.Blueprint('api', __name__)
-
+@api.route('/random-tweet/')
+def random_tweet():
+    return sql_interface.json_output_random_tweet()
+@api.route('/follower-chart/input/<search_query>')
+def get_folloer_for_a_user(search_query):
+    return sql_interface.json_output_followers_over_time(search_query)
 @api.route('/search/input/<search_query>')
 def get_tweets_from_input(search_query):
     return sql_interface.json_output_tweet_search(search_query)
