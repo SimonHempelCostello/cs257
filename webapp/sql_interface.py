@@ -118,3 +118,35 @@ def check_sql_string(sql, values):
     sql = sql.replace("?", unique)
     for v in values: sql = sql.replace(unique, repr(v), 1)
     return sql
+
+
+#json_output_random_tweet
+'''sql for getting the changes in follower count to graph'''
+def output_random_tweet():
+    cursor = get_connection().cursor()
+
+    query = '''SELECT DISTINCT tweet_instance.followers, tweets.publish_date
+    FROM tweets, authors, tweet_instance
+    WHERE authors.external_author_id = tweet_instance.author_id
+    AND tweets.tweet_id = tweet_instance.tweet_id
+    AND authors.author_name LIKE %(input_query)s
+    ORDER BY tweets.publish_date;'''
+        
+    try:
+        cursor.execute(query, ({'input_query':'%'+account_name+'%'}))
+    except Exception as e:
+        print(e)
+        exit()
+    return cursor
+
+def json_output_random_tweet():
+    '''returns the JSON output contaning the data from the games medal list sql call'''
+    cursor = output_random_tweet()
+    output_list = []
+    for row in cursor:
+        row_dictionary = {}
+        row_dictionary["y"] = row[0]
+        row_dictionary["x"] = row[1]
+
+        output_list.append(row_dictionary)
+    return json.dumps(output_list)
