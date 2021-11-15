@@ -11,7 +11,7 @@ def get_connection():
         config module. May raise an exception as described in the
         documentation for psycopg2.connect. '''
     return psycopg2.connect(database=config.database,
-                            user=config.user
+                            user=config.username
                             )
 
 
