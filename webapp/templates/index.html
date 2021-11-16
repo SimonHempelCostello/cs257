@@ -19,7 +19,7 @@
         <li><a href="{{ url_for('about_page')}}">About</a></li>
     </ul>
 
-    <h1>Get to Know Three Million of Your Friendly Neighborhood Bots</h3>
+    <h1>Get to Know 300,000 of Your Friendly Neighborhood Bots</h3>
 
         <a href="{{ url_for('im_feeling_lucky')}}">
             <div id="large-button">
@@ -27,9 +27,8 @@
                 <p>Read a Random Twitter Bot Tweet</p>
             </div>
         </a>
-        <p>the dataset that we plan to use is 538’s database of Russian troll tweets and their posters. 
+        <p>This site give tools to analise twitter bot behavor using 538’s database of troll/bot tweets. 
             The data was gathered by the 538 team in collaboration with Clemson University. 
-            The data can be accessed here: https://github.com/fivethirtyeight/russian-troll-tweets
             The data database is made up of colums such as author, contents, language, data published, 
             followers at time collected, following # at time collected, updates, post type, tweet URL and more</p>
     <img src="{{ url_for('static', filename='word_cloud.jpg') }}" id="content-image">
