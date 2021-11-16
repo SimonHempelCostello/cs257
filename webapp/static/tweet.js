@@ -16,9 +16,7 @@ function search_data_base() {
     let url = getAPIBaseURL() + '/random-tweet/';
 
     fetch(url, { method: 'get' })
-
     .then((response) => response.json())
-
     .then(function(tweet_list) {
         tweet = tweet_list[0]
         document.getElementById("tweet_name").innerHTML = tweet['author_name'];
@@ -30,5 +28,4 @@ function search_data_base() {
     .catch(function(error) {
         console.log(error);
     });
-
 }
