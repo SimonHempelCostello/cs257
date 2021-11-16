@@ -17,6 +17,10 @@ def get_folloer_for_a_user(search_query):
 @api.route('/search/input/<search_query>')
 def get_tweets_from_input(search_query):
     return sql_interface.json_output_tweet_search(search_query)
+@api.route('/help/')
+def get_help():
+    help_text = open('templates/help.txt').read()
+    return flask.Response(help_text, mimetype='text/plain')
 @api.route('/rankings/input/<input_json>')
 def get_users_by_ranking(input_json):
     query = json.loads(input_json)
