@@ -19,12 +19,9 @@ def index_page():
 @app.route('/search') 
 def search():
     return flask.render_template('search.html')
-
-## User story has fallen out of favor
-# @app.route('/wordcloud') 
-# def word_cloud():
-#     return flask.render_template('word-cloud.html')
-
+@app.route('/wordcloud') 
+def word_cloud():
+    return flask.render_template('word-cloud.html')
 @app.route('/about') 
 def about_page():
     return flask.render_template('about.html')
