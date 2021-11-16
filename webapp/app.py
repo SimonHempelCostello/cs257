@@ -1,7 +1,7 @@
 '''
     app.py
     Simon Hempel-Costello, Lev Schuster
-    25 April 2016
+    15 November 2021
 '''
 import flask
 import argparse
@@ -19,12 +19,12 @@ def index_page():
 @app.route('/search') 
 def search():
     return flask.render_template('search.html')
-@app.route('/wordcloud') 
-def word_cloud():
-    return flask.render_template('word-cloud.html')
-@app.route('/about') 
-def about():
-    return flask.render_template('about.html') #why do we have two about pages?
+
+## User story has fallen out of favor
+# @app.route('/wordcloud') 
+# def word_cloud():
+#     return flask.render_template('word-cloud.html')
+
 @app.route('/about') 
 def about_page():
     return flask.render_template('about.html')
@@ -44,7 +44,9 @@ def graph_account(account_id):
 def get_help():
     return flask.render_template('help.html')
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser('A database hosting tweets and associated data from Clemsons social media listener, including API & DB')
+    parser = argparse.ArgumentParser('''A database hosting tweets and associated data 
+                                        from Clemsons social media listener, including 
+                                        API & DB''')
     parser.add_argument('host', help='the host to run on')
     parser.add_argument('port', type=int, help='the port to listen on')
     arguments = parser.parse_args()

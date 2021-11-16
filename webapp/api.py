@@ -1,9 +1,8 @@
 '''
     api.py
     Simon Hempel-Costello, Lev Schuster
-    25 April 2016
+    13 Noverber 2021
 '''
-import sys
 import flask
 import sql_interface
 import json
