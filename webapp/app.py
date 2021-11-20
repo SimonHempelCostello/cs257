@@ -13,15 +13,12 @@ app.register_blueprint(api.api, url_prefix='/api')
 @app.route('/') 
 def home():
     return flask.render_template('index.html')
-@app.route('/index.html') 
+@app.route('/index') 
 def index_page():
     return flask.render_template('index.html')
 @app.route('/search') 
 def search():
     return flask.render_template('search.html')
-@app.route('/wordcloud') 
-def word_cloud():
-    return flask.render_template('word-cloud.html')
 @app.route('/about') 
 def about_page():
     return flask.render_template('about.html')

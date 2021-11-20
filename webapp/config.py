@@ -1,3 +1,3 @@
-user='lev'
+user='simonhc'
 password=''
-database='grading'
+database='tweets'

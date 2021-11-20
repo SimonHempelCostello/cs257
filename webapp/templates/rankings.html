@@ -14,7 +14,6 @@
     <ul class="horizontal-navbar">
         <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image">
         </a></li>
-        <!-- <li><a href="{{ url_for('word_cloud')}}">Word Cloud</a></li> -->
         <li><a href="{{ url_for('search')}}">🔍 Search</a></li>
         <li><a href="{{ url_for('rankings')}}">Rankings</a></li>
         <li><a href="{{ url_for('im_feeling_lucky')}}">I'm Feeling Lucky</a></li>
@@ -34,28 +33,22 @@
         <label for="show-retweets" class = "tweet-checkbox"> Retweets</label><br>
     </form>
     <ul id = "order-bar">
-        <li><button type = "button">Ascending</button></li>
-        <li><button type = "button">Descending</button></li>
+        <li><button type = "button" id="ascending-order-button" onclick = "display_ascending()">Ascending</button></li>
+        <li><button type = "button" id = "descending-order-button" onclick="display_descending()">Descending</button></li>
     </ul>
     <ul id = "sort-bar">
-        <li><button type = "button">Date</button></li>
-        <li><button type = "button">Followers</button></li>
-        <li><button type = "button">Number of Tweets</button></li>
-        <li><button typej = "button">Alphabetically By Author</button></li>
-    </ul>
-    <ul id = "order-bar" class = "red">
-        <li><button type = "button">Find Top Bot</button></li>
-        <li><button type = "button">Find Top Three Bots</button></li>
-        <li><button type = "button">Find Top Ten Bots</button></li>
-        <li><button type = "button">Rank Bots (returns all bots)</button></li>
-
+        <li><button type = "button" id = "sort-by-followers-button" onclick = "display_followers()">Followers</button></li>
+        <li><button type = "button" id = "sort-by-number-of-tweets-button" onclick = "display_number_of_tweets()">Number of Tweets</button></li>
+        <li><button typej = "button" id = "sort-alphabetically-button" onclick = "display_alphabetically()">Alphabetically By Author</button></li>
     </ul>
     <button type = "button" id = "results-button" onclick ="search_data_base()">Update Results</button>
 
     <h2 id = "results-heading"> Results:</h2>
     <ul id = "results-list">
-       
-
     </ul>
+    <button  type= "button" id = "show-more-button", onclick = "iterate_results_forward()">Show Next 10</button></li>
+
+    <button  type= "button" id = "show-more-button", onclick = "iterate_results_back()">Show Last 10</button></li>
+
 </body>
 </html>
