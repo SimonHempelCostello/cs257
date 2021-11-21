@@ -67,7 +67,7 @@ function assign_colors(selected_order_option, selected_sort_option) {
     let tweet_count_button = document.getElementById("sort-by-number-of-tweets-button");
     let following_button = document.getElementById("sort-by-following-button");
 
-    let selected_color = "#3687b3";
+    let selected_color = "Grey";
     let non_selected_color = "#f1f1f1";
 
     if (selected_order_option == "ascending") {

@@ -28,16 +28,15 @@
     </form>
 
     <button type = "button" id = "results-button" onclick ="search_data_base()">Search</button>
+    <h2> Sort By</h2>
 
-    <h2> Tweet Types</h2>
     <div id = "dates-div">
         <label class = "tweet-date-filters-start" for = "tweet-filter-start"> Start Date:</label>
-        <input type="date"class = "tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2012-02-01"min="2012-02-01" max="2018-05-31">
+        <input type="date"class = "tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2014-02-01"min="2014-02-01" max="2018-05-31">
         <label class = "tweet-date-filters-end" for = "tweet-filter-end"> End Date:</label>
-        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2018-05-31"min="2012-02-01" max="2019-01-01">
+        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2018-05-31"min="2014-02-01" max="2019-01-01">
     </div>
 
-    <h2> Sort By</h2>
      <ul id = "order-bar">
         <li><button type = "button" id="ascending-order-button" onclick = "display_ascending()">Ascending</button></li>
         <li><button type = "button" id = "descending-order-button" onclick="display_descending()">Descending</button></li>
@@ -52,9 +51,12 @@
 
 
     <h2 id = "results-heading"> Results</h2>
+    <div id = "show-more-borders">
     <ul id = "results-list"></ul>
-    <button  type= "button" id = "show-more-button", onclick = "iterate_results_forward()">Show Next 10</button></li>
+    
+    <button  type= "button" id = "show-more-button", onclick = "iterate_results_forward()">Next</button></li>
 
-    <button  type= "button" id = "show-more-button", onclick = "iterate_results_back()">Show Last 10</button></li>
+    <button  type= "button" id = "show-more-button", onclick = "iterate_results_back()">Previous</button></li>
+    </div>
 </body>
 </html>

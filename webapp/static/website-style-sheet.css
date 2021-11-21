@@ -196,12 +196,12 @@ label.tweet-checkbox {
 
 #show-more-button {
     background-color: #f1f1f1;
-    margin-right: 5px;
+    margin-left: 5px;
     position: relative;
     color: black;
     border: none;
     font-size: 120%;
-    padding-right: 7%;
+    padding-right: 1%;
     float: right;
     float: top;
     text-align: center;
@@ -216,7 +216,7 @@ label.tweet-checkbox {
     color: black;
     border: none;
     font-size: 180%;
-    padding-left: 0%;
+    padding: 1%;
     text-align: center;
     margin-left: 5px;
 }
@@ -227,8 +227,7 @@ label.tweet-checkbox {
 
 #results-list {
     list-style: none;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 7%;
     text-align: center;
 }
 
@@ -255,4 +254,9 @@ td {
 
 .top-level-table-heading {
     background-color: #f1f1f1;
+}
+
+#show-more-borders {
+    position: relative;
+    right: 10%;
 }
