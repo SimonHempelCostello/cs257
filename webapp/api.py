@@ -14,9 +14,17 @@ def random_tweet():
 @api.route('/follower-chart/input/<search_query>')
 def get_folloer_for_a_user(search_query):
     return sql_interface.json_output_followers_over_time(search_query)
-@api.route('/search/input/<search_query>')
-def get_tweets_from_input(search_query):
-    return sql_interface.json_output_tweet_search(search_query)
+@api.route('/search/input/<search_query_json>')
+def get_tweets_from_input(search_query_json):
+    query = json.loads(search_query_json)
+    '''some necessary date sanitation to deal with the dates ouput by the javascript'''
+    input_start_date = query['start_date'].replace('-0','-')
+    input_start_date = input_start_date.replace('-','/')
+    input_end_date = query['end_date'].replace('-0','-')
+    input_end_date = input_end_date.replace('-','/')
+    input_sorting_metric = query['sort_metric']
+    input_search_query = query['search_string']
+    return sql_interface.json_output_tweet_search(search_query= input_search_query, sorting_metric = input_sorting_metric, end_date = input_end_date, start_date= input_start_date)
 @api.route('/help/')
 def get_help():
     help_text = open('templates/help.txt').read()

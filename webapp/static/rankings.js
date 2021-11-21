@@ -104,7 +104,7 @@ function search_data_base() {
     let hide_original_tweets = document.getElementById('show-tweets').checked;
     let hide_retweets = document.getElementById('show-retweets').checked;
 
-    var query = new Object();
+    let query = new Object();
     query.start_date = start_date;
     query.end_date = end_date;
     query.hide_original_tweets = hide_original_tweets;
@@ -125,18 +125,22 @@ function search_data_base() {
 }
 
 function iterate_results_forward() {
+    start_index = end_index
     if (end_index + 10 < current_data.length) {
-        start_index += 10;
         end_index += 10;
+    } else {
+        end_index = current_data.length - 1;
     }
 
     display_json(current_data, start_index, end_index)
 }
 
 function iterate_results_back() {
+    end_index = start_index;
     if (start_index - 10 >= 0) {
         start_index -= 10;
-        end_index -= 10;
+    } else {
+        start_index = 0;
     }
 
     display_json(current_data, start_index, end_index)
@@ -166,13 +170,10 @@ function display_json(user_list, start_i, end_i) {
 
     let list_body = '';
     let table_length = user_list.length;
-    if (first_index < 0) {
-        first_index = 0;
-        final_index = 10;
-    }
     if (final_index >= table_length) {
         final_index = table_length - 1;
-        first_index = final_index - 10;
+    } else if (final_index < 0) {
+        final_index = 0;
     }
     if (selected_order_bar == "descending") {
         interval = 1;
@@ -184,6 +185,7 @@ function display_json(user_list, start_i, end_i) {
 
         first_index = table_length - (start_i + 1);
         final_index = table_length - (end_i + 1);
+
         for (let i = first_index; i > final_index; i--) {
             list_body += generate_table(user_list[i]);
         }

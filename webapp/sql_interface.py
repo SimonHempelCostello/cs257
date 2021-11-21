@@ -13,27 +13,41 @@ def get_connection():
         documentation for psycopg2.connect. '''
     return psycopg2.connect(database=config.database, user=config.user)
 
-def tweet_search_sql(input_query):
+def tweet_search_sql(input_query, sorting_metric, start_date, end_date):
     '''sql for getting the list of matching bots'''
     cursor = get_connection().cursor()
+    sort_by =''
+    order = ''
+    if(sorting_metric == 'Followers'):
+        sort_by = 'tweet_instance.followers'
+        order = ' DESC'
+    elif(sorting_metric == 'Following'):
+        sort_by = 'tweet_instance.accounts_followed'
+        order = ' DESC'
+    elif(sorting_metric == 'Alphabetically'):
+        sort_by = 'authors.author_name'
+        order = ' ASC'
+    
 
     query = '''SELECT DISTINCT tweets.tweet_content, authors.author_name, 
     tweet_instance.followers, tweet_instance.accounts_followed, tweets.publish_date
     FROM tweets, authors, tweet_instance
     WHERE authors.external_author_id = tweet_instance.author_id
     AND tweets.tweet_id = tweet_instance.tweet_id
-    and tweets.tweet_content LIKE %(input_query)s'''
+    AND tweets.publish_date >= %(start_date)s AND tweets.publish_date < %(end_date)s
+    AND tweets.tweet_content LIKE %(input_query)s
+    ORDER BY ''' + sort_by + order
         
     try:
-        cursor.execute(query, ({'input_query':'%'+input_query+'%'}))
+        cursor.execute(query, ({'input_query':'%'+input_query+'%', 'start_date':start_date, 'end_date':end_date}))
     except Exception as e:
         print(e)
         exit()
     return cursor
 
-def json_output_tweet_search(query):
+def json_output_tweet_search(search_query = '', sorting_metric = 'Followers', start_date = '2012/01/01', end_date = '2018/05/31'):
     '''returns the JSON output contaning the data from the matching tweets'''
-    cursor = tweet_search_sql(query)
+    cursor = tweet_search_sql(search_query, sorting_metric, start_date, end_date)
     output_list = []
     for row in cursor:
         row_dictionary = {}
@@ -43,6 +57,7 @@ def json_output_tweet_search(query):
         row_dictionary["followed"] = row[3]
         row_dictionary["date"] = row[4]
         output_list.append(row_dictionary)
+    print(json.dumps(output_list))
     return json.dumps(output_list)
 
 def user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, hide_retweets):
@@ -116,12 +131,6 @@ def json_output_followers_over_time(query):
         row_dictionary["x"] = row[1]
         output_list.append(row_dictionary)
     return json.dumps(output_list)
-
-def check_sql_string(sql, values):
-    unique = "%PARAMETER%"
-    sql = sql.replace("?", unique)
-    for v in values: sql = sql.replace(unique, repr(v), 1)
-    return sql
 
 
 def output_random_tweet():

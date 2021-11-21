@@ -34,30 +34,27 @@
         <label class = "tweet-date-filters-start" for = "tweet-filter-start"> Start Date:</label>
         <input type="date"class = "tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2012-02-01"min="2012-02-01" max="2018-05-31">
         <label class = "tweet-date-filters-end" for = "tweet-filter-end"> End Date:</label>
-        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2012-02-01"min="2012-02-01" max="2018-05-31">
+        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2018-05-31"min="2012-02-01" max="2019-01-01">
     </div>
-    <form id = "tweet-filter-checkboxes">
-        <input type="checkbox" id="show-tweets" name="show-tweets" value="tweets" class = "tweet-checkbox">
-        <label for="show-tweets" class = "tweet-checkbox">Hide Original Tweets</label><br>
-        <input type="checkbox" id="show-retweets" name="show-retweets" value="retweets" class = "tweet-checkbox">
-        <label for="show-retweets" class = "tweet-checkbox">Hide Retweets</label><br>
-    </form>
 
     <h2> Sort By</h2>
+     <ul id = "order-bar">
+        <li><button type = "button" id="ascending-order-button" onclick = "display_ascending()">Ascending</button></li>
+        <li><button type = "button" id = "descending-order-button" onclick="display_descending()">Descending</button></li>
+    </ul>
     <ul id = "sort-bar">
-        <li><button type = "button">Date</button></li>
-        <li><button type = "button">Followers</button></li>
-        <li><button type = "button">Alphabetically By Author</button></li>
+        <li><button type = "button" id = "sort-by-followers-button" onclick = "display_followers()">Followers</button></li>
+        <li><button type = "button" id = "sort-alphabetically-button" onclick = "display_alphabetically()">Alphabetically</button></li>
+        <li><button typej = "button" id = "sort-by-following-button" onclick = "display_following()">Accounts Followed</button></li>
+
     </ul>
-    <ul id = "order-bar">
-        <li><button type = "button">Ascending</button></li>
-        <li><button type = "button">Descending</button></li>
-    </ul>
-    <ul id = "order-bar">
-        <li><button type = "button">Submit</button></li>
-    </ul>
+    <button type = "button" id = "results-button" onclick ="search_data_base()">Update Results</button>
+
 
     <h2 id = "results-heading"> Results</h2>
     <ul id = "results-list"></ul>
+    <button  type= "button" id = "show-more-button", onclick = "iterate_results_forward()">Show Next 10</button></li>
+
+    <button  type= "button" id = "show-more-button", onclick = "iterate_results_back()">Show Last 10</button></li>
 </body>
 </html>
