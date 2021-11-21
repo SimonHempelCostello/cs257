@@ -31,4 +31,5 @@ def get_users_by_ranking(input_json):
     input_end_date = input_end_date.replace('-','/')
     input_hide_original_tweets = query['hide_original_tweets']
     input_hide_retweets = query['hide_retweets']
-    return sql_interface.json_output_user_rankings(start_date=input_start_date, end_date=input_end_date, hide_original_tweets=input_hide_original_tweets, hide_retweets=input_hide_retweets)
+    input_sorting_metric = query['sort_metric']
+    return sql_interface.json_output_user_rankings(sort_metric = input_sorting_metric,start_date=input_start_date, end_date=input_end_date, hide_original_tweets=input_hide_original_tweets, hide_retweets=input_hide_retweets)

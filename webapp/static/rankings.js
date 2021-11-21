@@ -3,7 +3,7 @@ var start_index = 0;
 var end_index = 10;
 
 var selected_order_bar = "descending"
-var selected_sort_bar = "followers"
+var selected_sort_bar = "Followers"
 
 
 var current_data;
@@ -42,19 +42,19 @@ function display_descending() {
 
 function display_followers() {
 
-    selected_sort_bar = "followers";
+    selected_sort_bar = "Followers";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
 function display_number_of_tweets() {
 
-    selected_sort_bar = "number_of_tweets";
+    selected_sort_bar = "Tweet Count";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
-function display_alphabetically() {
+function display_following() {
 
-    selected_sort_bar = "alphabetically";
+    selected_sort_bar = "Following";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
@@ -65,7 +65,8 @@ function assign_colors(selected_order_option, selected_sort_option) {
 
     let followers_button = document.getElementById("sort-by-followers-button");
     let tweet_count_button = document.getElementById("sort-by-number-of-tweets-button");
-    let alphabetically_button = document.getElementById("sort-alphabetically-button");
+    let following_button = document.getElementById("sort-by-following-button");
+
     let selected_color = "#3687b3";
     let non_selected_color = "#f1f1f1";
 
@@ -77,18 +78,18 @@ function assign_colors(selected_order_option, selected_sort_option) {
         descending_button.style.backgroundColor = selected_color;
     }
 
-    if (selected_sort_option == "followers") {
+    if (selected_sort_option == "Followers") {
         followers_button.style.backgroundColor = selected_color;
         tweet_count_button.style.backgroundColor = non_selected_color;
-        alphabetically_button.style.backgroundColor = non_selected_color;
-    } else if (selected_sort_option == "number_of_tweets") {
+        following_button.style.backgroundColor = non_selected_color;
+    } else if (selected_sort_option == "Tweet Count") {
         followers_button.style.backgroundColor = non_selected_color;
         tweet_count_button.style.backgroundColor = selected_color;
-        alphabetically_button.style.backgroundColor = non_selected_color;
-    } else if (selected_sort_option == "alphabetically") {
+        following_button.style.backgroundColor = non_selected_color;
+    } else if (selected_sort_option == "Following") {
         followers_button.style.backgroundColor = non_selected_color;
         tweet_count_button.style.backgroundColor = non_selected_color;
-        alphabetically_button.style.backgroundColor = selected_color;
+        following_button.style.backgroundColor = selected_color;
     }
 
 }
@@ -108,6 +109,7 @@ function search_data_base() {
     query.end_date = end_date;
     query.hide_original_tweets = hide_original_tweets;
     query.hide_retweets = hide_retweets;
+    query.sort_metric = selected_sort_bar;
     query_json_string = JSON.stringify(query);
 
     let url = getAPIBaseURL() + '/rankings/input/' + query_json_string;
@@ -153,7 +155,7 @@ function generate_table(user) {
     table_body += "<li> <table style='width:100%' class = 'results-table'> <tr class = 'top-level-table-heading'> <th><a>Bot Account</a></th><td><a href='/follower_chart/"
     table_body += user['author_name']
     table_body += "'>" + user['author_name'] + "</a></td></tr>";
-    table_body += generate_table_row('Followers', 'sorting_data', user);
+    table_body += generate_table_row(selected_sort_bar, 'sorting_data', user);
     table_body += '</table></li>'
     return table_body;
 }

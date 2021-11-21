@@ -49,6 +49,7 @@ def user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, h
     '''sql for getting the list of highest performing bots'''
     cursor = get_connection().cursor()
     hide_value = 2
+    sort_by = ''
     if(hide_original_tweets and hide_retweets):
         return None
     elif(hide_original_tweets):
@@ -56,14 +57,21 @@ def user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, h
     elif(hide_retweets):
         hide_value = 1
         
-    query = '''SELECT authors.author_name, MAX(''' + sort_metric + ''') 
+    if(sort_metric == 'Following'):
+        sort_by = 'MAX(tweet_instance.accounts_followed)'
+    elif(sort_metric == 'Followers'):
+        sort_by = 'MAX(tweet_instance.followers)'
+    elif(sort_metric =='Tweet Count' ):
+        sort_by = 'COUNT(tweet_instance)'
+        
+    query = '''SELECT DISTINCT authors.author_name,''' + sort_by + ''' 
     FROM authors, tweet_instance, tweets
     WHERE tweet_instance.author_id = authors.external_author_id
     AND tweets.tweet_id = tweet_instance.tweet_id
     AND tweets.publish_date >= %(start_date)s AND tweets.publish_date < %(end_date)s
     AND tweets.is_retweet != %(hide_value)s
     GROUP BY authors.author_name
-    ORDER BY MAX('''+sort_metric+''') DESC;'''
+    ORDER BY '''+sort_by+''' DESC;'''
     try:
         cursor.execute(query, ({ 'start_date':start_date, 'end_date':end_date, 'hide_value':hide_value}))
     except Exception as e:
@@ -71,7 +79,7 @@ def user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, h
         exit()
     return cursor
 
-def json_output_user_rankings( sort_metric = 'tweet_instance.followers', start_date = '2000-01-01', end_date = '2022-01-01', hide_original_tweets = False, hide_retweets = False):
+def json_output_user_rankings( sort_metric = 'Followers', start_date = '2000-01-01', end_date = '2022-01-01', hide_original_tweets = False, hide_retweets = False):
     '''returns the JSON output contaning the data from top performing bots'''
     cursor = user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, hide_retweets)
     output_list = []

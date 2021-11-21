@@ -161,7 +161,7 @@ label.tweet-checkbox {
 }
 
 #sort-bar button:hover {
-    background-color: gray;
+    border-style: solid;
 }
 
 #order-bar {
@@ -191,7 +191,7 @@ label.tweet-checkbox {
 }
 
 #order-bar button:hover {
-    background-color: gray;
+    border-style: solid;
 }
 
 #show-more-button {
