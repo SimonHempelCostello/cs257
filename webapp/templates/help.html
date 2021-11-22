@@ -60,7 +60,12 @@ EXAMPLE(S):
 
 REQUEST: /api/search/input/
 GET parameters
-    search_query- return only those tweets that case insenstively contain the search query
+    search_query_json- A json string which contains the following perameters
+        start_date = to be included in the response tweets must be published after this date
+        end_date = to be included in the response tweets must be published before this date 
+        sorting_metric = The metric by which the returned information is sorted.
+        search_string = the character string which must be contained in the content of all returned tweets
+
 RESPONSE:  A JSON string containing all tweets that contain the given character string, along with the username for the author, 
 the number of followers that user had at the time, the publish date, the tweet content, and the number of accounts that the user followed at that times
    author_name (TEXT) - the account name for the user that posted the tweet. 
@@ -82,17 +87,17 @@ followers that the user had when they made that tweet, and the date at which eac
    y (INTEGER)- the number of followers that the account had at time of posting.
    x (DateTime)- the time at which the tweet was published
 EXAMPLE(S):
-    /api/follower_chart/BALTIMORE0NLINE  
+    /api/follower-chart/input/BALTIMORE0NLINE  
     [{"y": 59, "x": "2015/5/18"}, {"y": 59, "x": "2015/7/21"}, {"y": 59, "x": "2015/7/25"}, 
     {"y": 59, "x": "2015/7/30"}, {"y": 59, "x": "2015/7/31"}, {"y": 57, "x": "2015/7/4"}, 
     {"y": 59, "x": "2015/8/18"}, {"y": 58, "x": "2015/8/27"}, {"y": 58, "x": "2015/8/29"}, 
     {"y": 55, "x": "2015/9/14"}, {"y": 55, "x": "2015/9/6"}, {"y": 6417, "x": "2017/1/1"}]
 
-REQUEST: /api/follower-chart/input/
+REQUEST: /api/rankings/input/
 GET parameters
     input_json- contains a JSON string which holds these parameters:
-        start_date = the earliest that tweets in the returned dataset can be published
-        end_date = the latest that tweets in the returned database can be published
+        start_date = to be included in the response tweets must be published after this date
+        end_date = to be included in the response tweets must be published before this date
         hide_original_tweets= Whether original tweets should be removed from the selected database
         hid_retweets = Whether retweets should be removed from the database
         sorting_metric= The metric by which the returned information is sorted. 
