@@ -21,17 +21,8 @@
         <li><a href="{{ url_for('im_feeling_lucky')}}">I'm Feeling Lucky</a></li>
         <li><a href="{{ url_for('about_page')}}">About</a></li>
     </ul>
-    <!-- commented portion incase we want date based filtered later on -->
-    <!-- <div id="title-that-for-next-item-to-be-right"> -->
-        <h1>Twitter User: <span id="title"></span></h1>
-    <!-- </div> -->
-    <!-- <div id = "dates-div">
-        <label class = "tweet-date-filters-start" for = "tweet-filter-start"> Start Date:</label>
-        <input type="date"class = "tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2012-02-01"min="2012-02-01" max="2018-05-31">
-        <label class = "tweet-date-filters-end" for = "tweet-filter-end"> End Date:</label>
-        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2012-02-01"min="2012-02-01" max="2018-05-31">
-    </div> -->
-    <div char>
+    <h1>Twitter User: <span id="title"></span></h1>
+    <div class="chart-container">
         <canvas id="follower-chart"></canvas>
     </div>
 </body>

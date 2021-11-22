@@ -33,6 +33,7 @@ function getData() {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 title: { display: true, text: "Follower Count When Bot Tweets" },
                 scales: {
                     xAxes: [{
@@ -41,11 +42,11 @@ function getData() {
                             format: timeFormat,},
                         scaleLabel: {
                             display: true,
-                            labelString: 'Number of Followers'}}],
+                            labelString: 'Date'}}],
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Date'}}]
+                            labelString: 'Number of Followers'}}]
         }}};
         return config;})
     .then(function(config) {

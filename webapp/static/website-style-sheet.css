@@ -44,6 +44,10 @@ body {
     /* figure out hover behavior*/
 }
 
+.right-column-text{
+    margin-right: 10%;
+}
+
 #logo-image {
     height: 35px;
 }
@@ -231,10 +235,12 @@ label.tweet-checkbox {
     text-align: center;
 }
 
-follower-chart {
-    width: 75%;
-}
 
+.chart-container {
+    width: 90%;
+    height:500px;
+    padding-bottom: 20px;
+}
 .results-table {
     border: 1px solid black;
     border-collapse: collapse;
