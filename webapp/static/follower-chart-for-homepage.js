@@ -31,7 +31,6 @@ function getData() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
                 title: { display: true, text: "Follower Count When Bot Tweets" },
                 scales: {
                     xAxes: [{
