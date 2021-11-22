@@ -21,10 +21,10 @@ function getData() {
     fetch(url, { method: 'get' })
     .then((response) => response.json())
     .then(function(data2) {
-        console.log(data2);
         var config = {
             type: 'bubble',
             data: {
+                toolTipContent: "wow",
                 datasets: [{
                     label: getAccountName(),
                     data: data2,
@@ -33,7 +33,6 @@ function getData() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
                 title: { display: true, text: "Follower Count When Bot Tweets" },
                 scales: {
                     xAxes: [{
@@ -46,8 +45,9 @@ function getData() {
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Number of Followers'}}]
-        }}};
+                            labelString: 'Number of Followers'}}],
+                },
+            }};
         return config;})
     .then(function(config) {
         console.log(config);
