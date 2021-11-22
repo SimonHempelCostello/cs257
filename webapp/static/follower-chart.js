@@ -24,7 +24,6 @@ function getData() {
         var config = {
             type: 'bubble',
             data: {
-                toolTipContent: "wow",
                 datasets: [{
                     label: getAccountName(),
                     data: data2,
@@ -50,7 +49,6 @@ function getData() {
             }};
         return config;})
     .then(function(config) {
-        console.log(config);
         var canvas_element = document.getElementById("follower-chart").getContext("2d");
         window.myLine = new Chart(canvas_element, config);})
     .catch(function(error) {
