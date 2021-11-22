@@ -21,7 +21,6 @@ function getData() {
     fetch(url, { method: 'get' })
     .then((response) => response.json())
     .then(function(data2) {
-        console.log(data2);
         var config = {
             type: 'bubble',
             data: {
@@ -33,7 +32,6 @@ function getData() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
                 title: { display: true, text: "Follower Count When Bot Tweets" },
                 scales: {
                     xAxes: [{
@@ -46,11 +44,11 @@ function getData() {
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Number of Followers'}}]
-        }}};
+                            labelString: 'Number of Followers'}}],
+                },
+            }};
         return config;})
     .then(function(config) {
-        console.log(config);
         var canvas_element = document.getElementById("follower-chart").getContext("2d");
         window.myLine = new Chart(canvas_element, config);})
     .catch(function(error) {
