@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <base target="_parent">
     <title>Fake Tweet Generator - Generate convincing fake tweet images</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='tweet.css') }}" />
     <script src="{{ url_for('static', filename='tweet.js') }}"></script>
@@ -45,12 +46,13 @@
                 Loading...
               </div>
               <div class="tweet_info">
-                <div id="tweet_date">Jul 7, 2021</div>
+                <div id="tweet_date">Date</div>
               </div>
             </div>
             <div class="stats">
               <div class="stat">
-                <span id="followers" class="count">0</span> Followers
+                <span id="followers" class="count"></span> Followers
+                <a id="follower-chart-link" href="loading">📈 View Follower Chart</a>
               </div>
             </div>
             </div>
