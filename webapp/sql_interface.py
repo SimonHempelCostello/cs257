@@ -60,17 +60,10 @@ def json_output_tweet_search(search_query = '', sorting_metric = 'Followers', st
     print(json.dumps(output_list))
     return json.dumps(output_list)
 
-def user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, hide_retweets):
+def user_rankings_sql(sort_metric, start_date, end_date):
     '''sql for getting the list of highest performing bots'''
     cursor = get_connection().cursor()
-    hide_value = 2
     sort_by = ''
-    if(hide_original_tweets and hide_retweets):
-        return None
-    elif(hide_original_tweets):
-        hide_value = 0
-    elif(hide_retweets):
-        hide_value = 1
         
     if(sort_metric == 'Following'):
         sort_by = 'MAX(tweet_instance.accounts_followed)'
@@ -84,19 +77,18 @@ def user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, h
     WHERE tweet_instance.author_id = authors.external_author_id
     AND tweets.tweet_id = tweet_instance.tweet_id
     AND tweets.publish_date >= %(start_date)s AND tweets.publish_date < %(end_date)s
-    AND tweets.is_retweet != %(hide_value)s
     GROUP BY authors.author_name
     ORDER BY '''+sort_by+''' DESC;'''
     try:
-        cursor.execute(query, ({ 'start_date':start_date, 'end_date':end_date, 'hide_value':hide_value}))
+        cursor.execute(query, ({ 'start_date':start_date, 'end_date':end_date}))
     except Exception as e:
         print(e)
         exit()
     return cursor
 
-def json_output_user_rankings( sort_metric = 'Followers', start_date = '2000-01-01', end_date = '2022-01-01', hide_original_tweets = False, hide_retweets = False):
+def json_output_user_rankings( sort_metric = 'Followers', start_date = '2000-01-01', end_date = '2022-01-01'):
     '''returns the JSON output contaning the data from top performing bots'''
-    cursor = user_rankings_sql(sort_metric, start_date, end_date, hide_original_tweets, hide_retweets)
+    cursor = user_rankings_sql(sort_metric, start_date, end_date)
     output_list = []
     for row in cursor:
         row_dictionary = {}

@@ -101,14 +101,10 @@ function search_data_base() {
     end_index = 10;
     let start_date = document.getElementById('tweet-filter-start').value;
     let end_date = document.getElementById('tweet-filter-end').value;
-    let hide_original_tweets = document.getElementById('show-tweets').checked;
-    let hide_retweets = document.getElementById('show-retweets').checked;
 
     let query = new Object();
     query.start_date = start_date;
     query.end_date = end_date;
-    query.hide_original_tweets = hide_original_tweets;
-    query.hide_retweets = hide_retweets;
     query.sort_metric = selected_sort_bar;
     query_json_string = JSON.stringify(query);
 
