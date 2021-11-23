@@ -22,41 +22,41 @@
         <li><a href="{{ url_for('im_feeling_lucky')}}">I'm Feeling Lucky</a></li>
         <li><a href="{{ url_for('about_page')}}">About</a></li>
     </ul>
-    <h1 class = "searchtitle">Search The Contents of 300,000 Bot Tweets</h1>
-    <form id = "user-search-bar">
-        <input type = "search" id = "user-query" placeholder = "Search"  >
+    <h1 class="searchtitle">Search The Contents of 300,000 Bot Tweets</h1>
+    <form id="user-search-bar">
+        <input type="search" id="user-query" placeholder="Search"  >
     </form>
 
-    <button type = "button" id = "results-button" onclick ="search_data_base()">Search</button>
+    <button type="button" id="results-button" onclick ="search_data_base()">Search</button>
     <h2> Sort By</h2>
 
-    <div id = "dates-div">
-        <label class = "tweet-date-filters-start" for = "tweet-filter-start"> Start Date:</label>
-        <input type="date"class = "tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2014-02-01"min="2014-02-01" max="2018-05-31">
-        <label class = "tweet-date-filters-end" for = "tweet-filter-end"> End Date:</label>
-        <input type="date"class = "tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2018-05-31"min="2014-02-01" max="2019-01-01">
+    <div id="dates-div">
+        <label class="tweet-date-filters-start" for="tweet-filter-start"> Start Date:</label>
+        <input type="date" class="tweet-date-filters-start" id="tweet-filter-start" name="filter-start" value="2014-02-01"min="2014-02-01" max="2018-05-31">
+        <label class="tweet-date-filters-end" for="tweet-filter-end"> End Date:</label>
+        <input type="date" class="tweet-date-filters-end" id="tweet-filter-end" name="filter-end" value="2018-05-31"min="2014-02-01" max="2019-01-01">
     </div>
 
-     <ul id = "order-bar">
-        <li><button type = "button" id="ascending-order-button" onclick = "display_ascending()">Ascending</button></li>
-        <li><button type = "button" id = "descending-order-button" onclick="display_descending()">Descending</button></li>
+     <ul id="order-bar">
+        <li><button type="button" id="ascending-order-button" onclick="display_ascending()">Ascending</button></li>
+        <li><button type="button" id="descending-order-button" onclick="display_descending()">Descending</button></li>
     </ul>
-    <ul id = "sort-bar">
-        <li><button type = "button" id = "sort-by-followers-button" onclick = "display_followers()">Followers</button></li>
-        <li><button type = "button" id = "sort-alphabetically-button" onclick = "display_alphabetically()">Alphabetically</button></li>
-        <li><button typej = "button" id = "sort-by-following-button" onclick = "display_following()">Accounts Followed</button></li>
+    <ul id="sort-bar">
+        <li><button type="button" id="sort-by-followers-button" onclick="display_followers()">Followers</button></li>
+        <li><button type="button" id="sort-alphabetically-button" onclick="display_alphabetically()">Alphabetically</button></li>
+        <li><button type="button" id="sort-by-following-button" onclick="display_following()">Accounts Followed</button></li>
 
     </ul>
-    <button type = "button" id = "results-button" onclick ="search_data_base()">Update Results</button>
+    <button type="button" id="results-button" onclick ="search_data_base()">Update Results</button>
 
 
-    <h2 id = "results-heading"> Results</h2>
-    <div id = "show-more-borders">
-    <ul id = "results-list"></ul>
+    <h2 id="results-heading"> Results</h2>
+    <div id="show-more-borders">
+    <ul id="results-list"></ul>
     
-    <button  type= "button" id = "show-more-button", onclick = "iterate_results_forward()">Next</button></li>
+    <button  type= "button" id="show-more-button", onclick="iterate_results_forward()">Next</button></li>
 
-    <button  type= "button" id = "show-more-button", onclick = "iterate_results_back()">Previous</button></li>
+    <button  type= "button" id="show-more-button", onclick="iterate_results_back()">Previous</button></li>
     </div>
 </body>
 </html>
