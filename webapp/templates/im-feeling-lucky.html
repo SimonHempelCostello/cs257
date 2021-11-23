@@ -10,7 +10,7 @@
 <body>
 
     <ul class="horizontal-navbar">
-        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image">
+        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image" alt="Main Logo">
         </a></li>
         <li><a href="{{ url_for('search')}}">🔍 Search</a></li>
         <li><a href="{{ url_for('rankings')}}">Rankings</a></li>
@@ -20,7 +20,7 @@
 
     <a href="{{ url_for('im_feeling_lucky')}}"> <!--make sure it reloads in a way that picks a new random tweet-->
         <div id="heading-button">
-            <img src="https://cdn.iconscout.com/icon/free/png-256/shuffle-62-475053.png" id="starter-image">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/shuffle-62-475053.png" id="starter-image" alt="Reload Random Tweet" >
             <h1>I'm Feeling Lucky - Read a Random Twitter Bot Tweet</h1>
             <p>Click to Read a Diffrent Tweet</p>
         </div>
