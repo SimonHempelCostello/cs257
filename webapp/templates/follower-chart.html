@@ -10,17 +10,15 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
 </head>
-
 <body>
-
     <ul class="horizontal-navbar">
-        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image" alt="Main Logo">
-        </a></li>
+        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image" alt="Main Logo"></a></li>
         <li><a href="{{ url_for('search')}}">🔍 Search</a></li>
         <li><a href="{{ url_for('rankings')}}">Rankings</a></li>
         <li><a href="{{ url_for('im_feeling_lucky')}}">I'm Feeling Lucky</a></li>
         <li><a href="{{ url_for('about_page')}}">About</a></li>
     </ul>
+    
     <h1>Twitter User: <span id="title"></span></h1>
     <div class="chart-container">
         <canvas id="follower-chart"></canvas>

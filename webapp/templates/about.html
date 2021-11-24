@@ -6,12 +6,9 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='website-style-sheet.css') }}" />
 </head>
-
 <body>
-
     <ul class="horizontal-navbar">
-        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image" alt="Main Logo">
-        </a></li>
+        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image" alt="Main Logo"></a></li>
         <li><a href="{{ url_for('search')}}">🔍 Search</a></li>
         <li><a href="{{ url_for('rankings')}}">Rankings</a></li>
         <li><a href="{{ url_for('im_feeling_lucky')}}">I'm Feeling Lucky</a></li>
@@ -41,8 +38,6 @@
                 </div>
             </a>
         </div>
-        <p class="right-column-text">This project is by Simon Hempel Costello and Lev Shuster based on 538’s collaboration with Clemson University. 
-        </p>
-        
+        <p class="right-column-text">This project is by Simon Hempel Costello and Lev Shuster based on 538’s collaboration with Clemson University. </p>
 </body>
 </html>

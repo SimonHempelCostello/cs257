@@ -6,27 +6,23 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='website-style-sheet.css') }}" />
 </head>
-
 <body>
-
     <ul class="horizontal-navbar">
-        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image" alt="Main Logo">
-        </a></li>
+        <li><a href="{{ url_for('home')}}"> <img src="{{ url_for('static', filename='logo.png') }}" id="logo-image" alt="Main Logo"></a></li>
         <li><a href="{{ url_for('search')}}">🔍 Search</a></li>
         <li><a href="{{ url_for('rankings')}}">Rankings</a></li>
         <li><a href="{{ url_for('im_feeling_lucky')}}"><b>I'm Feeling Lucky</b></a></li>
         <li><a href="{{ url_for('about_page')}}">About</a></li>
     </ul>
 
-    <a href="{{ url_for('im_feeling_lucky')}}"> <!--make sure it reloads in a way that picks a new random tweet-->
+    <a href="{{ url_for('im_feeling_lucky')}}">
         <div id="heading-button">
             <img src="https://cdn.iconscout.com/icon/free/png-256/shuffle-62-475053.png" id="starter-image" alt="Reload Random Tweet" >
             <h1>I'm Feeling Lucky - Read a Random Twitter Bot Tweet</h1>
             <p>Click to Read a Diffrent Tweet</p>
         </div>
     </a>
-    <iframe src="{{ url_for('tweet')}}" width="100%" height="400" frameBorder="0">
-    </iframe>
-    
+
+    <iframe src="{{ url_for('tweet')}}" width="100%" height="400" frameBorder="0"></iframe>
 </body>
 </html>

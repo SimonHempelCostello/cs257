@@ -93,7 +93,32 @@ EXAMPLE(S):
     {"y": 59, "x": "2015/8/18"}, {"y": 58, "x": "2015/8/27"}, {"y": 58, "x": "2015/8/29"}, 
     {"y": 55, "x": "2015/9/14"}, {"y": 55, "x": "2015/9/6"}, {"y": 6417, "x": "2017/1/1"}]
 
-REQUEST: /api/rankings/input/
+REQUEST: /api/rankings/input/he number of followers that the account had at time of posting.
+publish_date (DateTime)- the time at which the tweet was published
+tweet_content(TEXT)- the actual content of the tweet
+accounts_followed(INTEGER)- the number of accounts this twitter user followed at the time of tweeting
+EXAMPLE(S):
+ /api/search/input/RT%20coloradodon1:%20
+ [{"content": "RT coloradodon1: #MAGA Agree no one in the streets of Charlotte are part of the #Trumptrain as the MSM &amp; Liberals \u2026 https:t.coFyKRrRFON3", "author_name": "BARRY_MILL", "followers": 1, "followed": 0, "date": "2017/8/14"}
+ ,{"content": "RT coloradodon1: #MAGA Agree no one in the streets of Charlotte are part of the #Trumptrain as the MSM &amp; Liberals \u2026 https:t.coH876MHraO5", "author_name": "ALLFORPETERSONS", "followers": 2, "followed": 19, "date": "2017/8/14"}
+ ,{"content": "RT coloradodon1: #MAGA Agree no one in the streets of Charlotte are part of the #Trumptrain as the MSM &amp; Liberals \u2026 https:t.coxfZ2N3lXUH", "author_name": "AMERICANALBERT", "followers": 2, "followed": 23, "date": "2017/8/14"}] 
+
+REQUEST: /api/follower-chart/input/
+GET parameters
+ search_query- return only those tweets made by the user with name maching the search query
+RESPONSE: Returns every tweet that a certain chosen username has made over their entire history, along with the number of 
+followers that the user had when they made that tweet, and the date at which each tweet was published
+y (INTEGER)- the number of followers that the account had at time of posting.
+x (DateTime)- the time at which the tweet was published
+EXAMPLE(S):
+ /api/follower-chart/input/BALTIMORE0NLINE  
+ [{"y": 59, "x": "2015/5/18"}, {"y": 59, "x": "2015/7/21"}, 
+ {"y": 59, "x": "2015/7/25"}, {"y": 59, "x": "2015/7/30"}, 
+ {"y": 59, "x": "2015/7/31"}, {"y": 57, "x": "2015/7/4"}, 
+ {"y": 59, "x": "2015/8/18"}, {"y": 58, "x": "2015/8/27"}, 
+ {"y": 58, "x": "2015/8/29"}, {"y": 55, "x": "2015/9/14"}, 
+ {"y": 55, "x": "2015/9/6"}, {"y": 6417, "x": "2017/1/1"}]
+
 GET parameters
     input_json- contains a JSON string which holds these parameters:
         start_date = to be included in the response tweets must be published after this date
