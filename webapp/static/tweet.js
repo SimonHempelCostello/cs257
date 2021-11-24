@@ -14,7 +14,6 @@ function getAPIBaseURL() {
 
 function search_data_base() {
     let url = getAPIBaseURL() + '/random-tweet/';
-
     fetch(url, { method: 'get' })
     .then((response) => response.json())
     .then(function(tweet_list) {
@@ -25,7 +24,6 @@ function search_data_base() {
         document.getElementById("tweet_date").innerHTML = tweet['date'];
         document.getElementById("followers").textContent = tweet['followers'];
         document.getElementById("follower-chart-link").href = "/follower_chart/"+tweet['author_name'];
-
     })
     .catch(function(error) {
         console.log(error);

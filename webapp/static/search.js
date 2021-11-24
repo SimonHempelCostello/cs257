@@ -30,7 +30,6 @@ function display_ascending() {
         start_index = 0;
         end_index = 10;
     }
-
     selected_order_bar = "ascending";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
@@ -45,24 +44,21 @@ function display_descending() {
 }
 
 function display_followers() {
-
     selected_sort_bar = "Followers";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
 function display_alphabetically() {
-
     selected_sort_bar = "Alphabetically";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
 function display_following() {
-
     selected_sort_bar = "Following";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
-// to be implemented in final draft
+// signals what filters have been selected
 function assign_colors(selected_order_option, selected_sort_option) {
     let ascending_button = document.getElementById("ascending-order-button");
     let descending_button = document.getElementById("descending-order-button");
@@ -95,7 +91,6 @@ function assign_colors(selected_order_option, selected_sort_option) {
         alphabetically_button.style.backgroundColor = non_selected_color;
         following_button.style.backgroundColor = selected_color;
     }
-
 }
 
 function generate_table(tweet) {
@@ -125,7 +120,6 @@ function search_data_base() {
 
     query_json_string = JSON.stringify(query);
     let url = getAPIBaseURL() + '/search/input/' + query_json_string;
-
     fetch(url, { method: 'get' })
         .then((response) => response.json())
         .then(function(user_list) {
@@ -135,7 +129,6 @@ function search_data_base() {
         .catch(function(error) {
             console.log(error);
         });
-
 }
 
 function iterate_results_forward() {
@@ -145,7 +138,6 @@ function iterate_results_forward() {
     } else {
         end_index = current_data.length - 1;
     }
-
     display_json(current_data, start_index, end_index)
 }
 
@@ -156,7 +148,6 @@ function iterate_results_back() {
     } else {
         start_index = 0;
     }
-
     display_json(current_data, start_index, end_index)
 }
 
@@ -171,24 +162,19 @@ function display_json(user_list, start_i, end_i) {
     } else if (final_index < 0) {
         final_index = 0;
     }
+
     if (selected_order_bar == "descending") {
         interval = 1;
-
-
         for (let i = first_index; i < final_index; i++) {
             list_body += generate_table(user_list[i]);
         }
     } else {
-
         first_index = table_length - (start_i + 1);
         final_index = table_length - (end_i + 1);
-
         for (let i = first_index; i > final_index; i--) {
             list_body += generate_table(user_list[i]);
         }
     }
-
-
 
     let list = document.getElementById('results-list');
 

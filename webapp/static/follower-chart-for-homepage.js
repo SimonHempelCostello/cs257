@@ -1,7 +1,10 @@
 // code lossely based on some broken code from sebaoka: https://stackoverflow.com/questions/55428160/wrong-label-value-is-displayed-on-point-hover-chart-js
 var timeFormat = 'YYYY/MM/DD';
 
-//example is nytimes (as in @nytimes)
+// We used a handwritten account name to guarantee an interesting chart to display.
+// Displaying a random tweet here didn't make sense because some
+// bot behavior doesn't graph well (outliers throw off scale)
+// this way the first graph users see isn't unnecessarily confusing
 function getAccountName() {
     return "ANDY_PUCHINSKYI";
 }
@@ -19,27 +22,21 @@ function getData() {
     
     fetch(url, { method: 'get' })
     .then((response) => response.json())
-    .then(function(data2) {
+    .then(function(api_data) {
         var config = {
             type: 'bubble',
             data: {
                 datasets: [{
-                    label: getAccountName(),
-                    data: data2,
-                    fill: true,
-                    borderColor: "#c45850"}]
-            },
+                    label: getAccountName(), data: api_data,
+                    fill: true, borderColor: "#c45850"}]},
             options: {
                 responsive: true,
                 title: { display: true, text: "Follower Count When Bot Tweets" },
                 scales: {
                     xAxes: [{
                         type: "time",
-                        time: {
-                            format: timeFormat,},
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Date'}}],
+                        time: {format: timeFormat,},
+                        scaleLabel: {display: true, labelString: 'Date'}}],
                     yAxes: [{
                         scaleLabel: {
                             display: true,
@@ -52,7 +49,6 @@ function getData() {
     .catch(function(error) {
         console.log(error);});
 };
-
 
 window.onload = function() {
     getData();

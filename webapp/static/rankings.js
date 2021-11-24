@@ -1,10 +1,12 @@
 window.onload = initialize;
+
+// enable viewing multiple pages of results
 var start_index = 0;
 var end_index = 10;
 
+// set default search parameters
 var selected_order_bar = "descending"
 var selected_sort_bar = "Followers"
-
 
 var current_data;
 
@@ -26,7 +28,6 @@ function display_ascending() {
         start_index = 0;
         end_index = 10;
     }
-
     selected_order_bar = "ascending";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
@@ -41,24 +42,21 @@ function display_descending() {
 }
 
 function display_followers() {
-
     selected_sort_bar = "Followers";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
 function display_number_of_tweets() {
-
     selected_sort_bar = "Tweet Count";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
 function display_following() {
-
     selected_sort_bar = "Following";
     assign_colors(selected_order_bar, selected_sort_bar);
 }
 
-// to be implemented in final draft
+// signals what filters have been selected
 function assign_colors(selected_order_option, selected_sort_option) {
     let ascending_button = document.getElementById("ascending-order-button");
     let descending_button = document.getElementById("descending-order-button");
@@ -91,14 +89,12 @@ function assign_colors(selected_order_option, selected_sort_option) {
         tweet_count_button.style.backgroundColor = non_selected_color;
         following_button.style.backgroundColor = selected_color;
     }
-
 }
-
-
 
 function search_data_base() {
     start_index = 0;
     end_index = 10;
+
     let start_date = document.getElementById('tweet-filter-start').value;
     let end_date = document.getElementById('tweet-filter-end').value;
 
@@ -119,7 +115,7 @@ function search_data_base() {
             console.log(error);
         });
 }
-
+//next button (nee next page of results)
 function iterate_results_forward() {
     start_index = end_index
     if (end_index + 10 < current_data.length) {
@@ -127,10 +123,10 @@ function iterate_results_forward() {
     } else {
         end_index = current_data.length - 1;
     }
-
     display_json(current_data, start_index, end_index)
 }
 
+//previous button (see previous page of results)
 function iterate_results_back() {
     end_index = start_index;
     if (start_index - 10 >= 0) {
@@ -138,7 +134,6 @@ function iterate_results_back() {
     } else {
         start_index = 0;
     }
-
     display_json(current_data, start_index, end_index)
 }
 
@@ -166,31 +161,27 @@ function display_json(user_list, start_i, end_i) {
 
     let list_body = '';
     let table_length = user_list.length;
+
     if (final_index >= table_length) {
         final_index = table_length - 1;
     } else if (final_index < 0) {
         final_index = 0;
     }
+
     if (selected_order_bar == "descending") {
         interval = 1;
-
         for (let i = first_index; i < final_index; i++) {
             list_body += generate_table(user_list[i]);
         }
     } else {
-
         first_index = table_length - (start_i + 1);
         final_index = table_length - (end_i + 1);
-
         for (let i = first_index; i > final_index; i--) {
             list_body += generate_table(user_list[i]);
         }
     }
 
-
-
     let list = document.getElementById('results-list');
-
     if (list) {
         list.innerHTML = list_body;
     }

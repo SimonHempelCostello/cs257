@@ -1,7 +1,8 @@
 // code lossely based on some broken code from sebaoka: https://stackoverflow.com/questions/55428160/wrong-label-value-is-displayed-on-point-hover-chart-js
 var timeFormat = 'YYYY/MM/DD';
 
-//example is nytimes (as in @nytimes)
+// gets account name that will be charted from the url so users can more easily return 
+// to/bookmark particuarlly intersting charts
 function getAccountName() {
     let accountName = window.location.pathname
     return accountName.substr("/follower_chart/".length);
@@ -20,13 +21,13 @@ function getData() {
     
     fetch(url, { method: 'get' })
     .then((response) => response.json())
-    .then(function(data2) {
+    .then(function(api_data) {
         var config = {
             type: 'bubble',
             data: {
                 datasets: [{
                     label: getAccountName(),
-                    data: data2,
+                    data: api_data,
                     fill: true,
                     borderColor: "#c45850"}]
             },
@@ -36,15 +37,10 @@ function getData() {
                 scales: {
                     xAxes: [{
                         type: "time",
-                        time: {
-                            format: timeFormat,},
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Date'}}],
+                        time: {format: timeFormat,},
+                        scaleLabel: {display: true, labelString: 'Date'}}],
                     yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Number of Followers'}}],
+                        scaleLabel: {display: true, labelString: 'Number of Followers'}}],
                 },
             }};
         return config;})
@@ -54,7 +50,6 @@ function getData() {
     .catch(function(error) {
         console.log(error);});
 };
-
 
 window.onload = function() {
     document.getElementById("title").innerHTML = getAccountName();
