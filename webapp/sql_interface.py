@@ -7,17 +7,21 @@ import json
 import config
 import psycopg2
 
+
 def get_connection():
     ''' Returns a connection to the database described in the
-        config module. May raise an exception as described in the
+        config file. May raise an exception as described in the
         documentation for psycopg2.connect. '''
     return psycopg2.connect(database=config.database, user=config.user)
 
+
 def tweet_search_sql(input_query, sorting_metric, start_date, end_date):
-    '''sql for getting the list of matching bots'''
+    '''compiles and executes a sql command to get the list of matching bots'''
+
     cursor = get_connection().cursor()
     sort_by =''
     order = ''
+
     if(sorting_metric == 'Followers'):
         sort_by = 'tweet_instance.followers'
         order = ' DESC'
@@ -28,7 +32,6 @@ def tweet_search_sql(input_query, sorting_metric, start_date, end_date):
         sort_by = 'authors.author_name'
         order = ' ASC'
     
-
     query = '''SELECT DISTINCT tweets.tweet_content, authors.author_name, 
     tweet_instance.followers, tweet_instance.accounts_followed, tweets.publish_date
     FROM tweets, authors, tweet_instance
@@ -43,12 +46,15 @@ def tweet_search_sql(input_query, sorting_metric, start_date, end_date):
     except Exception as e:
         print(e)
         exit()
+
     return cursor
 
+
 def json_output_tweet_search(search_query = '', sorting_metric = 'Followers', start_date = '2012/01/01', end_date = '2018/05/31'):
-    '''returns the JSON output contaning the data from the matching tweets'''
+    '''returns the JSON output contaning the data from the tweets who match the search query'''
     cursor = tweet_search_sql(search_query, sorting_metric, start_date, end_date)
     output_list = []
+
     for row in cursor:
         row_dictionary = {}
         row_dictionary["content"] = row[0]
@@ -57,11 +63,12 @@ def json_output_tweet_search(search_query = '', sorting_metric = 'Followers', st
         row_dictionary["followed"] = row[3]
         row_dictionary["date"] = row[4]
         output_list.append(row_dictionary)
-    print(json.dumps(output_list))
+
     return json.dumps(output_list)
 
+
 def user_rankings_sql(sort_metric, start_date, end_date):
-    '''sql for getting the list of highest performing bots'''
+    '''compiles and executes a sql command to get the list of highest performing bots'''
     cursor = get_connection().cursor()
     sort_by = ''
         
@@ -79,54 +86,66 @@ def user_rankings_sql(sort_metric, start_date, end_date):
     AND tweets.publish_date >= %(start_date)s AND tweets.publish_date < %(end_date)s
     GROUP BY authors.author_name
     ORDER BY '''+sort_by+''' DESC;'''
+
     try:
         cursor.execute(query, ({ 'start_date':start_date, 'end_date':end_date}))
     except Exception as e:
         print(e)
         exit()
+
     return cursor
 
+
 def json_output_user_rankings( sort_metric = 'Followers', start_date = '2000-01-01', end_date = '2022-01-01'):
-    '''returns the JSON output contaning the data from top performing bots'''
+    '''returns the JSON output contaning the data for top performing bots'''
     cursor = user_rankings_sql(sort_metric, start_date, end_date)
     output_list = []
+
     for row in cursor:
         row_dictionary = {}
         row_dictionary["author_name"] = row[0]
         row_dictionary["sorting_data"] = row[1]
         output_list.append(row_dictionary)
+
     return json.dumps(output_list)
 
+
 def output_followers_over_time_sql(account_name):
-    '''sql for getting the changes in follower count to graph'''
+    '''compiles and executes a sql command to get the changes in follower count to graph'''
     cursor = get_connection().cursor()
+
     query = '''SELECT DISTINCT tweet_instance.followers, tweets.publish_date
     FROM tweets, authors, tweet_instance
     WHERE authors.external_author_id = tweet_instance.author_id
     AND tweets.tweet_id = tweet_instance.tweet_id
     AND authors.author_name LIKE %(input_query)s
     ORDER BY tweets.publish_date;'''
+
     try:
         cursor.execute(query, ({'input_query':'%'+account_name+'%'}))
     except Exception as e:
         print(e)
         exit()
+
     return cursor
 
+
 def json_output_followers_over_time(query):
-    '''returns the JSON output contaning the data from the followers_over_time sql call'''
+    '''returns the JSON output contaning the data needed to graph followers over time'''
     cursor = output_followers_over_time_sql(query)
     output_list = []
+
     for row in cursor:
         row_dictionary = {}
         row_dictionary["y"] = row[0]
         row_dictionary["x"] = row[1]
         output_list.append(row_dictionary)
+
     return json.dumps(output_list)
 
 
 def output_random_tweet():
-    '''sql for getting a random tweet'''
+    '''compiles and executes a sql command to get a random tweet'''
     cursor = get_connection().cursor()
     query = '''SELECT authors.author_name, tweet_instance.followers, tweets.publish_date, 
     tweets.tweet_content
@@ -139,12 +158,15 @@ def output_random_tweet():
     except Exception as e: 
         print(e)
         exit()
+
     return cursor
 
+
 def json_output_random_tweet():
-    '''returns the JSON output contaning the data from the random_tweet sql call'''
+    '''returns the JSON output contaning the data needed to display a random tweet'''
     cursor = output_random_tweet()
     output_list = []
+
     for row in cursor:
         row_dictionary = {}
         row_dictionary["author_name"] = row[0]
@@ -152,4 +174,5 @@ def json_output_random_tweet():
         row_dictionary["date"] = row[2]
         row_dictionary["content"] = row[3]
         output_list.append(row_dictionary)
+        
     return json.dumps(output_list)
